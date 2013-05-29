@@ -1,0 +1,14 @@
+= simple_form_for @girl do |f|
+  .form-inputs
+    = f.input :name
+    = f.input :birthday
+    = f.input :bwh
+    = f.input :height
+    = f.input :blood_type
+    = f.input :nationality
+    = f.input :special_skill
+    = f.input :hobby
+    = f.input :description
+    = f.button :submit,  class: "btn btn-primary"
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), girls_path, :class => 'btn'

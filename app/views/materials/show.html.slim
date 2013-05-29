@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Title:
+  = @material.title
+p
+  strong Content:
+  = @material.content
+p
+  strong Resourceable:
+  = @material.resourceable
+p
+  strong Resourceable:
+  = @material.resourceable_id
+p
+  strong Price:
+  = @material.price
+
+= link_to 'Edit', edit_material_path(@material)
+'|
+= link_to 'Back', materials_path

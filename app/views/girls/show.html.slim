@@ -1,0 +1,47 @@
+- model_class = Girl
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human
+
+p
+  strong= model_class.human_attribute_name(:name) + ':'
+  br
+  = @girl.name
+p
+  strong= model_class.human_attribute_name(:birthday) + ':'
+  br
+  = @girl.birthday
+p
+  strong= model_class.human_attribute_name(:bwh) + ':'
+  br
+  = @girl.bwh
+p
+  strong= model_class.human_attribute_name(:height) + ':'
+  br
+  = @girl.height
+p
+  strong= model_class.human_attribute_name(:blood_type) + ':'
+  br
+  = @girl.blood_type
+p
+  strong= model_class.human_attribute_name(:nationality) + ':'
+  br
+  = @girl.nationality
+p
+  strong= model_class.human_attribute_name(:special_skill) + ':'
+  br
+  = @girl.special_skill
+p
+  strong= model_class.human_attribute_name(:hobby) + ':'
+  br
+  = @girl.hobby
+p
+  strong= model_class.human_attribute_name(:description) + ':'
+  br
+  = @girl.description
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), girls_path, :class => 'btn'
+  '
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_path(@girl), :class => 'btn'
+  '
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), girl_path(@girl), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

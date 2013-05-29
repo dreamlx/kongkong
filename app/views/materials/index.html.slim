@@ -1,0 +1,27 @@
+h1 Listing materials
+
+table
+  tr
+    th Title
+    th Content
+    th Resourceable
+    th Resourceable
+    th Price
+    th
+    th
+    th
+
+  - @materials.each do |material|
+    tr
+      td = material.title
+      td = material.content
+      td = material.resourceable
+      td = material.resourceable_id
+      td = material.price
+      td = link_to 'Show', material
+      td = link_to 'Edit', edit_material_path(material)
+      td = link_to 'Destroy', material, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Material', new_material_path
