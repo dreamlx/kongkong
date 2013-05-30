@@ -1,24 +1,11 @@
-= form_for @material do |f|
-  - if @material.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@material.errors.count, "error")} prohibited this material from being saved:"
-      ul
-        - @material.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :resourceable
-    = f.text_field :resourceable
-  .field
-    = f.label :resourceable_id
-    = f.number_field :resourceable_id
-  .field
-    = f.label :price
-    = f.text_field :price
-  .actions = f.submit 'Save'
+= simple_form_for @material, :html => { :class => "form-horizontal" } do |f|
+  = f.input :title
+  = f.input :content
+  = f.input :resource_type
+  = f.input :resource_id
+  = f.input :price
+  = f.input :attechment
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), materials_path, :class => 'btn'

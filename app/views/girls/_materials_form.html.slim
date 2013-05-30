@@ -1,0 +1,6 @@
+p.fields
+  - if f.object.nil? || f.object.new_record?
+    = f.input :attachment, as: :file, pattern: "(.*)+\.(jpg|png|gif|JPG|PNG|GIF)$"
+  - else
+    = f.object.attachment.url
+    = f.link_to_remove t("views.remove"), class: "btn btn-warning"

@@ -16,9 +16,11 @@ gem "devise"
 gem "twitter-bootstrap-rails"
 
 gem 'simple_form'
+gem "nested_form"
 gem 'activeadmin'
 gem 'state_machine'
 gem 'awesome_nested_set'
+gem 'fog'
 
 # Gems used only for assets and not required
 # in production environments by default.
