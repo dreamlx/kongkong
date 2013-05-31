@@ -5,8 +5,6 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-
 gem 'qiniu-rs'
 gem 'carrierwave'
 gem 'carrierwave-qiniu'
@@ -39,8 +37,14 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem 'pg'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'spork'
+end
+
+group :production do
+  gem 'mysql2'
+  gem 'thin'
 end
