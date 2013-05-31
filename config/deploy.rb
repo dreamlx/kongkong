@@ -9,9 +9,9 @@ require 'rvm/capistrano'
 # main details
 set :application, "kongkong"
 set :keep_releases, 10 
-role :web, "kongkong.com"                          # Your HTTP server, Apache/etc
-role :app, "kongkong.com"                          # This may be the same as your `Web` server
-role :db,  "kongkong.com", :primary => true # This is where Rails migrations will run
+role :web, "42.120.9.87"                          # Your HTTP server, Apache/etc
+role :app, "42.120.9.87"                          # This may be the same as your `Web` server
+role :db,  "42.120.9.87", :primary => true # This is where Rails migrations will run
 #role :db,  "3dtzk.com"
 
 #server details
