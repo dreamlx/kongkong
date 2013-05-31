@@ -12,4 +12,10 @@ class LosersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def toggle
+    @girl = Girl.find(params[:id])
+    Loser.find(current_user).favor_toggle(@girl)
+    redirect_to girl_path(@girl)
+  end
 end

@@ -6,7 +6,13 @@ Kongkong::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
-  resources :losers
+  
+  resources :losers do
+    member do
+      put 'toggle'
+    end
+  end
+  
   resources :girls do
     resources :dailyposts
   end

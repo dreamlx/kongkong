@@ -1,5 +1,5 @@
 class DailypostsController < InheritedResources::Base
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   def new
     @girl = Girl.find(params[:girl_id])
   end
