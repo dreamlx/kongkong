@@ -1,6 +1,4 @@
 Kongkong::Application.routes.draw do
-  resources :materials
-
 
   root to: "home#index" 
   
@@ -8,8 +6,10 @@ Kongkong::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
-
-  resources :girls
+  resources :losers
+  resources :girls do
+    resources :dailyposts
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

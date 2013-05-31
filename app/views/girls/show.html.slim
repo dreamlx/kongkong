@@ -1,7 +1,8 @@
 - model_class = Girl
 div class="page-header"
-  h1=t '.title', :default => model_class.model_name.human
-
+  h1
+    =t '.title', :default => model_class.model_name.human
+    = link_to 'daily post', girl_dailyposts_path(@girl), class: "btn btn-smaller"
 p
   strong= model_class.human_attribute_name(:name) + ':'
   br
@@ -38,21 +39,7 @@ p
   strong= model_class.human_attribute_name(:description) + ':'
   br
   = @girl.description
-p
-  = simple_nested_form_for @girl do |f|
-    = f.simple_fields_for :photos do |p|
-      = render 'materials_form', f:p
-    = f.link_to_add ".photos", :photos, class: "btn btn-smaller"
-    hr
-    = f.simple_fields_for :videos do |v|
-      = render 'materials_form', f:v
-    = f.link_to_add ".videos", :photos, class: "btn btn-smaller"
-    hr
-    = f.simple_fields_for :sounds do |s|
-      = render 'materials_form', f:s
-    = f.link_to_add ".sounds", :photos, class: "btn btn-smaller"
 
-    = f.submit
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), girls_path, :class => 'btn'
   '

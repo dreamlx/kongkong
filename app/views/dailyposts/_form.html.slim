@@ -1,0 +1,10 @@
+= simple_form_for [@girl, @girl.dailyposts.build], :html => { :class => "form-horizontal" } do |f|
+  = f.association :girl
+  = f.input :content, placeholder: "some words to visitor"
+  = f.input :photo, label: "upload photo"
+  = f.input :linkto, label: "file of photo link"
+  = f.input :cost, placeholder: "spend how many flower?"
+  .form-actions
+    = f.button :submit, :class => 'btn btn-primary'
+    '
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), girl_dailyposts_path(params[:girl_id]), :class => 'btn'
