@@ -1,5 +1,5 @@
-source 'https://rubygems.org'
-
+#source 'https://rubygems.org'
+source 'http://ruby.taobao.org'
 gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
@@ -22,6 +22,8 @@ gem 'state_machine'
 gem 'awesome_nested_set'
 gem 'fog'
 
+gem "rvm-capistrano"
+gem 'capistrano', '~> 2.12.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
