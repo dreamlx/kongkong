@@ -17,6 +17,11 @@ Kongkong::Application.routes.draw do
     resources :dailyposts
   end
 
+  namespace :api do
+    resources :girls
+    resources :dailyposts
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

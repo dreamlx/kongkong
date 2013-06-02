@@ -153,6 +153,8 @@ GEM
       mime-types (~> 1.19)
       rest-client (~> 1.6)
       ruby-hmac (~> 0.4)
+    rabl (0.8.4)
+      activesupport (>= 2.3.14)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -266,6 +268,7 @@ DEPENDENCIES
   nested_form
   pg
   qiniu-rs
+  rabl
   rails (= 3.2.12)
   rspec-rails
   rvm-capistrano

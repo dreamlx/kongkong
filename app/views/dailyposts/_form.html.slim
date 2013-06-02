@@ -1,8 +1,16 @@
-= simple_form_for [@girl, @girl.dailyposts.build], :html => { :class => "form-horizontal" } do |f|
+= simple_form_for [@girl, @dailypost], :html => { :class => "form-horizontal" } do |f|
   = f.association :girl
   = f.input :content, placeholder: "some words to visitor"
-  = f.input :photo, label: "upload photo"
-  = f.input :linkto, label: "file of photo link"
+  - if f.object.nil? || f.object.new_record?
+    = f.input :photo, label: "upload photo"
+    = f.input :linkto, label: "file of photo link"
+  - else
+    p
+      |photo: 
+      = image_tag @dailypost.photo.url unless @dailypost.photo.blank?
+    p 
+      |linkto_url: 
+      = @dailypost.linkto.url unless @dailypost.linkto.blank?
   = f.input :cost, placeholder: "spend how many flower?"
   .form-actions
     = f.button :submit, :class => 'btn btn-primary'

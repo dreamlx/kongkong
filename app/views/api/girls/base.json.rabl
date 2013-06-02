@@ -1,0 +1,1 @@
+attributes :id, :updated_at, :birthday, :blood_type, :bwh, :description, :height, :hobby, :name, :nationality, :special_skill

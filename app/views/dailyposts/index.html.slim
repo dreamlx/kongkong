@@ -28,7 +28,7 @@ table class="table table-striped"
         td= dailypost.cost
         td=l dailypost.created_at
         td
-          /= link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_dailypost_path(params[:girl_id], dailypost), :class => 'btn btn-mini'
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_dailypost_path(params[:girl_id], dailypost), :class => 'btn btn-mini'
           '
           = link_to t('.destroy', :default => t("helpers.links.destroy")), girl_dailypost_path(params[:girl_id], dailypost), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 

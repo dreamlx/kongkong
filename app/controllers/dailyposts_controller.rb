@@ -2,10 +2,12 @@ class DailypostsController < InheritedResources::Base
   before_filter :authenticate_user!
   def new
     @girl = Girl.find(params[:girl_id])
+    @dailypost = Dailypost.new
   end
 
   def edit
     @girl = Girl.find(params[:girl_id])
+    @dailypost = Dailypost.find(params[:id])
   end
 
   def create
