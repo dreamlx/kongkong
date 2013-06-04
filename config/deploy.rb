@@ -1,11 +1,12 @@
+# coding: utf-8
 set :rvm_ruby_string, '1.9.3-p392@tzk3d'               # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"        # more info: rvm help autolibs
 
 before 'deploy:setup', 'rvm:install_rvm'   # install RVM
 before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset, OR:
 before 'deploy:setup', 'rvm:create_gemset' # only create gemset
-require 'rvm/capistrano' 
-require 'bundler/capistrano' 
+require 'rvm/capistrano' # 支持rvm
+require 'bundler/capistrano'  # 支持自动bundler
 # main details
 set :application, "kongkong"
 set :keep_releases, 10 
