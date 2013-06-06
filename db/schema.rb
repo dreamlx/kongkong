@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531131212) do
+ActiveRecord::Schema.define(:version => 20130604110930) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,6 +45,27 @@ ActiveRecord::Schema.define(:version => 20130531131212) do
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+
+  create_table "create_credit_line_items", :force => true do |t|
+    t.integer  "credit_id"
+    t.integer  "order_id"
+    t.decimal  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "create_credit_line_items", ["credit_id"], :name => "index_create_credit_line_items_on_credit_id"
+  add_index "create_credit_line_items", ["order_id"], :name => "index_create_credit_line_items_on_order_id"
+
+  create_table "credits", :force => true do |t|
+    t.integer  "user_id"
+    t.decimal  "start_balance", :default => 0.0
+    t.decimal  "balance",       :default => 0.0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "credits", ["user_id"], :name => "index_credits_on_user_id"
 
   create_table "dailyposts", :force => true do |t|
     t.integer  "girl_id"
@@ -88,6 +109,16 @@ ActiveRecord::Schema.define(:version => 20130531131212) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "attachment"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "credit_id"
+    t.decimal  "credit_quantity", :precision => 8, :scale => 2
+    t.decimal  "total",           :precision => 8, :scale => 2
+    t.string   "number"
+    t.string   "state"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
   end
 
   create_table "resources", :force => true do |t|

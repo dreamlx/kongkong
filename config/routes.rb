@@ -1,5 +1,18 @@
 Kongkong::Application.routes.draw do
 
+  resources :create_credit_line_items
+
+
+  resources :orders do
+    collection do
+      put :payment
+    end 
+  end
+
+
+  resources :credits
+
+
   root to: "home#index" 
   
   ActiveAdmin.routes(self)
@@ -20,6 +33,13 @@ Kongkong::Application.routes.draw do
   namespace :api do
     resources :girls
     resources :dailyposts
+    resources :losers do
+      collection do
+        get 'aboutme'
+      end
+    end
+    resources :credits
+    resources :orders
   end
 
   # The priority is based upon order of creation:

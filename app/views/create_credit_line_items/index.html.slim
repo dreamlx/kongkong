@@ -1,0 +1,23 @@
+h1 Listing create_credit_line_items
+
+table
+  tr
+    th Credit
+    th Order
+    th Amount
+    th
+    th
+    th
+
+  - @create_credit_line_items.each do |create_credit_line_item|
+    tr
+      td = create_credit_line_item.credit
+      td = create_credit_line_item.order
+      td = create_credit_line_item.amount
+      td = link_to 'Show', create_credit_line_item
+      td = link_to 'Edit', edit_create_credit_line_item_path(create_credit_line_item)
+      td = link_to 'Destroy', create_credit_line_item, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Create credit line item', new_create_credit_line_item_path

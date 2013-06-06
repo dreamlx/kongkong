@@ -1,0 +1,21 @@
+h1 Listing credits
+
+table.table
+  tr
+    th Start balance
+    th Balance
+    th
+    th
+    th
+
+  - @credits.each do |credit|
+    tr
+      td = credit.start_balance
+      td = credit.balance
+      td = link_to 'Show', credit
+      td = link_to 'Edit', edit_credit_path(credit)
+      td = link_to 'Destroy', credit, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Credit', new_credit_path

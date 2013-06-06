@@ -31,6 +31,8 @@ html lang="en"
               li= link_to "Girls", "/girls"
               li= link_to "Loser", edit_user_registration_path
               - if user_signed_in?
+                li= link_to "Orders", "/orders"
+                li= link_to "Credit", credit_path(current_user.credit)
                 li= link_to "Logout", destroy_user_session_path, :method => :delete
               - else
                 li= link_to "login", new_user_session_path

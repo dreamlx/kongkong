@@ -1,0 +1,18 @@
+= form_for @create_credit_line_item do |f|
+  - if @create_credit_line_item.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@create_credit_line_item.errors.count, "error")} prohibited this create_credit_line_item from being saved:"
+      ul
+        - @create_credit_line_item.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :credit
+    = f.text_field :credit
+  .field
+    = f.label :order
+    = f.text_field :order
+  .field
+    = f.label :amount
+    = f.text_field :amount
+  .actions = f.submit 'Save'

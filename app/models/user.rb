@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  after_create { |user| user.create_credit(:start_balance => 0,:balance => 0) }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -17,12 +18,18 @@ class User < ActiveRecord::Base
   attr_accessible :login
   # attr_accessible :title, :body
 
+  has_one :credit
   def self.find_first_by_auth_conditions(warden_conditions)
-      conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions).where(["username = :value OR email = :value OR device_token = :value", :value]).first
-      else
-        where(conditions).first
-      end
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["username = :value OR email = :value OR device_token = :value", :value]).first
+    else
+      where(conditions).first
     end
+  end
+
+  protected
+  def create_it_credit
+    self.create_credit
+  end
 end

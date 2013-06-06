@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Credit:
+  = @create_credit_line_item.credit
+p
+  strong Order:
+  = @create_credit_line_item.order
+p
+  strong Amount:
+  = @create_credit_line_item.amount
+
+= link_to 'Edit', edit_create_credit_line_item_path(@create_credit_line_item)
+'|
+= link_to 'Back', create_credit_line_items_path
