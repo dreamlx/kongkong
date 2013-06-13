@@ -18,4 +18,13 @@ class LosersController < ApplicationController
     Loser.find(current_user).favor_toggle(@girl)
     redirect_to girl_path(@girl)
   end
+
+  def payment
+    user = User.find(params[:id])
+    balance = user.credit.balance
+    balance = balance - params[:cost].to_i
+    user.credit.update_attributes(:balance => balance)
+    redirect_to dailypost_path(params[:post_id])
+  end
+
 end

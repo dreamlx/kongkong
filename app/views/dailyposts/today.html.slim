@@ -1,0 +1,7 @@
+= render :partial => "sub_menu"
+h1= Time.now.strftime("%B %d")
+ul
+  - @dailyposts.each do |dailypost|
+    li
+      a href="#{dailypost.photo.url}"
+        = image_tag dailypost.photo.url+"?imageView/2/h/200" unless dailypost.photo.blank?

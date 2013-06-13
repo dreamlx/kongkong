@@ -32,5 +32,5 @@ action method 没有特别说明，默认为'GET'
     http://42.120.9.87:3020/api/dailyposts.json
 
 ## get a post, /api/dailypost/:id
-http://42.120.9.87:3020/api/dailyposts/6.json
+    http://42.120.9.87:3020/api/dailyposts/6.json
 

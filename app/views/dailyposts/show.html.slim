@@ -13,12 +13,14 @@ p
 p
   strong= model_class.human_attribute_name(:photo) + ':'
   br
-  = @dailypost.photo
+  = image_tag @dailypost.photo.url
 p
   strong= model_class.human_attribute_name(:linkto) + ':'
   br
   = @dailypost.linkto
-
+p
+  strong = model_class.human_attribute_name(:cost) + ':'
+  = @dailypost.cost
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), dailyposts_path, :class => 'btn'
   '

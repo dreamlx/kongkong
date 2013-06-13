@@ -22,7 +22,7 @@ table class="table table-striped"
         td= dailypost.girl.name
         td
           a href="#{dailypost.photo.url}"
-            = image_tag dailypost.photo.url+"?imageView/2/h/200" unless dailypost.photo.blank?
+            = qiniu_image(dailypost)
         td= dailypost.content
         td= link_to dailypost.linkto.name, dailypost.linkto.url unless dailypost.linkto.blank?
         td= dailypost.cost

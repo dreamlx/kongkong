@@ -1,0 +1,6 @@
+= render :partial => "sub_menu"
+- @by_days.each do |day, posts|
+  h1= day.strftime("%B %d")
+  ul
+    - posts.each do |dailypost|
+      li= link_to qiniu_image(dailypost), payment_loser_path(current_user, post_id: dailypost.id), :method => :put, :data => { :confirm => "Pay #{dailypost.cost} Are you sure?"} unless dailypost.photo.blank?

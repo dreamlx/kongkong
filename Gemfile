@@ -20,6 +20,7 @@ gem 'activeadmin'
 gem 'state_machine'
 gem 'awesome_nested_set'
 gem 'fog'
+gem 'default_value_for', '~> 2.0.1'
 
 gem "rvm-capistrano"
 gem 'capistrano', '~> 2.12.0'

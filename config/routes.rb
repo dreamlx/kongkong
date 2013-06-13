@@ -11,7 +11,12 @@ Kongkong::Application.routes.draw do
 
 
   resources :credits
-
+  resources :dailyposts do
+    collection do
+      get "today"
+      get "by_day"
+    end   
+  end
 
   root to: "home#index" 
   
@@ -23,6 +28,7 @@ Kongkong::Application.routes.draw do
   resources :losers do
     member do
       put 'toggle'
+      put 'payment'
     end
   end
   

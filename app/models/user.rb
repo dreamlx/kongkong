@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["username = :value OR email = :value OR device_token = :value", :value]).first
+      where(conditions).where(["username = ? OR email = ? OR device_token = ?", :value,:value,:value]).first
     else
       where(conditions).first
     end

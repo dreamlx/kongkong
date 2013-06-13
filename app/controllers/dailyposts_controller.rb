@@ -31,4 +31,13 @@ class DailypostsController < InheritedResources::Base
       format.json { head :no_content }
     end
   end
+
+  def today
+    @dailyposts = Dailypost.where(["state = ?", "published"])
+  end
+
+  def by_day
+    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at }
+  end
+
 end

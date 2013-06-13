@@ -26,6 +26,7 @@ table class="table table-striped"
         td= girl.nationality
         td
           = link_to "new post", new_girl_dailypost_path(girl), :class => 'btn btn-mini'
+          = link_to "all post", girl_dailyposts_path(girl), :class => 'btn btn-mini'
           = link_to t('.show', :default => t("helpers.links.show")), girl_path(girl), :class => 'btn btn-mini'
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_path(girl), :class => 'btn btn-mini'
           '
