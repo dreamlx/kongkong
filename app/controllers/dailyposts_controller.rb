@@ -1,3 +1,4 @@
+# coding: utf-8
 class DailypostsController < InheritedResources::Base
   before_filter :authenticate_user!, except: [:today, :by_day]
   before_filter :payment, only: [:show]
@@ -46,6 +47,12 @@ class DailypostsController < InheritedResources::Base
     user = User.find(current_user.id)
     balance = user.credit.balance
     balance = balance - Dailypost.find(params[:id]).cost.to_i
+
+    if balance < 0 then
+      flash[:alert] = "钱不够，请充值"
+      redirect_to orders_path
+    end
+    
     user.credit.update_attributes(:balance => balance)
   end
 end
