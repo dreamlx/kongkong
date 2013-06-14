@@ -5,5 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+AdminUser.destroy_all
+User.destroy_all
 AdminUser.create!(:email => 'admin@gmail.com', :password => '11111111', :password_confirmation => '11111111')
 User.create!(:email => 'admin@admin.com', :password => '11111111', :password_confirmation => '11111111')
+User.create!(:email => 'test@gmail.com', :password => '11111111', :password_confirmation => '11111111')
+Dailypost.all.each do |d| 
+  d.state = 'default' 
+  d.save
+end

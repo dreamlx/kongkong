@@ -2,15 +2,9 @@ Kongkong::Application.routes.draw do
 
   resources :create_credit_line_items
 
-
-  resources :orders do
-    collection do
-      put :payment
-    end 
+  resources :credits do
+    resources :orders
   end
-
-
-  resources :credits
   resources :dailyposts do
     collection do
       get "today"
@@ -33,7 +27,11 @@ Kongkong::Application.routes.draw do
   end
   
   resources :girls do
-    resources :dailyposts
+    resources :dailyposts do
+      member do
+        put 'toggle_state'
+      end
+    end
   end
 
   namespace :api do

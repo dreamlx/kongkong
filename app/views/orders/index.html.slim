@@ -1,8 +1,8 @@
 h1 Listing orders 
 p.nav
-  .span= link_to 'Payment 5', payment_orders_path(:price => 5), method: "PUT", class: "btn btn-warning"
-  .span= link_to 'Payment 20', payment_orders_path(:price => 20), method: "PUT", class: "btn btn-warning"
-  .span= link_to 'Payment 100', payment_orders_path(:price => 100), method: "PUT", class: "btn btn-warning"
+  .span= link_to 'Payment 5', credit_orders_path(current_user.credit, :price => 5), method: "POST", class: "btn btn-warning"
+  .span= link_to 'Payment 20', credit_orders_path(current_user.credit,:price => 20), method: "POST", class: "btn btn-warning"
+  .span= link_to 'Payment 100', credit_orders_path(current_user.credit,:price => 100), method: "POST", class: "btn btn-warning"
 table.table
   tr
     th Credit quantity

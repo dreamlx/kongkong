@@ -2,6 +2,7 @@
 class DailypostsController < InheritedResources::Base
   before_filter :authenticate_user!, except: [:today, :by_day]
   before_filter :payment, only: [:show]
+  
   def new
     @girl = Girl.find(params[:girl_id])
     @dailypost = Dailypost.new
@@ -42,6 +43,13 @@ class DailypostsController < InheritedResources::Base
     @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
   end
 
+  def toggle_state
+    @dailypost = Dailypost.find(params[:id])
+
+    @dailypost.published? ? @dailypost.cancel : @dailypost.push_home
+    redirect_to girl_dailyposts_path(params[:girl_id])
+  end
+
   private
   def payment
     user = User.find(current_user.id)
@@ -50,7 +58,7 @@ class DailypostsController < InheritedResources::Base
 
     if balance < 0 then
       flash[:alert] = "钱不够，请充值"
-      redirect_to orders_path
+      redirect_to credit_orders_path(current_user.credit)
     end
     
     user.credit.update_attributes(:balance => balance)

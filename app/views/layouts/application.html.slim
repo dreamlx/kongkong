@@ -28,11 +28,12 @@ html lang="en"
           a.brand href="#"Kongkong
           .container-fluid.nav-collapse
             ul.nav
-              li= link_to "Girls", "/girls"
               li= link_to "DailyPosts", today_dailyposts_path
+              li= link_to "Girls", "/girls"
               li= link_to "Loser", edit_user_registration_path
+
               - if user_signed_in?
-                li= link_to "Orders", "/orders"
+                li= link_to "Orders", credit_orders_path(current_user.credit)
                 li= link_to "Credit", credit_path(current_user.credit)
                 li= link_to "Logout", destroy_user_session_path, :method => :delete
               - else

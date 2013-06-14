@@ -28,7 +28,7 @@ table class="table table-striped"
         td= link_to dailypost.linkto.name, dailypost.linkto.url unless dailypost.linkto.blank?
         td= dailypost.cost
         td= dailypost.created_at
-        td= dailypost.state
+        td= link_to dailypost.state||"default", toggle_state_girl_dailypost_path(params[:girl_id],dailypost), :class => "btn btn-mini", :method => 'PUT'
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_dailypost_path(params[:girl_id], dailypost), :class => 'btn btn-mini'
           '
