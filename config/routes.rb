@@ -18,7 +18,7 @@ Kongkong::Application.routes.draw do
     end   
   end
 
-  root to: "home#index" 
+  root to: "dailyposts#today" 
   
   ActiveAdmin.routes(self)
 
@@ -38,7 +38,13 @@ Kongkong::Application.routes.draw do
 
   namespace :api do
     resources :girls
-    resources :dailyposts
+    resources :dailyposts do
+      collection do
+        get "today"
+        get "by_day"
+      end
+    end
+
     resources :losers do
       collection do
         get 'aboutme'

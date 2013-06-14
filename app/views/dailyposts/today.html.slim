@@ -4,4 +4,4 @@ ul
   - @dailyposts.each do |dailypost|
     li
       a href="#{dailypost.photo.url}"
-        = image_tag dailypost.photo.url+"?imageView/2/h/200" unless dailypost.photo.blank?
+        = link_to qiniu_image(dailypost), dailypost_path(dailypost.id) 

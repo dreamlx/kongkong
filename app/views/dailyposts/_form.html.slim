@@ -12,6 +12,7 @@
       |linkto_url: 
       = @dailypost.linkto.url unless @dailypost.linkto.blank?
   = f.input :cost, placeholder: "spend how many flower?"
+  = f.input :state, collection: [ "default", "published"]
   .form-actions
     = f.button :submit, :class => 'btn btn-primary'
     '

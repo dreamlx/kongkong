@@ -1,5 +1,5 @@
 class Dailypost < ActiveRecord::Base
-  attr_accessible :content, :girl_id, :linkto, :photo, :cost
+  attr_accessible :content, :girl_id, :linkto, :photo, :cost, :state
   default_value_for :cost, 0
 
   mount_uploader :photo, AttachmentUploader

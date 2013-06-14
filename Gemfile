@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'spork'
+  gem "lorem-ipsum", :group=>:test
 end
 
 group :production do

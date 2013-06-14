@@ -13,7 +13,8 @@ table class="table table-striped"
       th= model_class.human_attribute_name(:content)
       th= model_class.human_attribute_name(:linkto)
       th= model_class.human_attribute_name(:cost)
-      ht= model_class.human_attribute_name(:created_at)
+      th= model_class.human_attribute_name(:created_at)
+      th= model_class.human_attribute_name(:state)
       th=t '.actions', :default => t("helpers.actions")
   tbody
     - @dailyposts.each do |dailypost|
@@ -26,7 +27,8 @@ table class="table table-striped"
         td= dailypost.content
         td= link_to dailypost.linkto.name, dailypost.linkto.url unless dailypost.linkto.blank?
         td= dailypost.cost
-        td=l dailypost.created_at
+        td= dailypost.created_at
+        td= dailypost.state
         td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_girl_dailypost_path(params[:girl_id], dailypost), :class => 'btn btn-mini'
           '

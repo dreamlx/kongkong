@@ -1,5 +1,6 @@
 class DailypostsController < InheritedResources::Base
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:today, :by_day]
+  before_filter :payment, only: [:show]
   def new
     @girl = Girl.find(params[:girl_id])
     @dailypost = Dailypost.new
@@ -37,7 +38,14 @@ class DailypostsController < InheritedResources::Base
   end
 
   def by_day
-    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at }
+    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
   end
 
+  private
+  def payment
+    user = User.find(current_user.id)
+    balance = user.credit.balance
+    balance = balance - Dailypost.find(params[:id]).cost.to_i
+    user.credit.update_attributes(:balance => balance)
+  end
 end

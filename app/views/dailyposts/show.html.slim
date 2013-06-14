@@ -1,7 +1,10 @@
 - model_class = Dailypost
 div class="page-header"
   h1=t '.title', :default => model_class.model_name.human
-
+p
+  strong= model_class.human_attribute_name(:updated_at) + ':'
+  br
+  = @dailypost.updated_at
 p
   strong= model_class.human_attribute_name(:girl_id) + ':'
   br
@@ -22,7 +25,7 @@ p
   strong = model_class.human_attribute_name(:cost) + ':'
   = @dailypost.cost
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), dailyposts_path, :class => 'btn'
+  = link_to t('.back', :default => t("helpers.links.back")), by_day_dailyposts_path, :class => 'btn'
   '
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_dailypost_path(@dailypost), :class => 'btn'
   '

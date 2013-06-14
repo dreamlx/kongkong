@@ -1,6 +1,5 @@
 # coding: utf-8
 FactoryGirl.define do
-  sequence(:random_string) {|n| LoremIpsum.generate }
 
   factory :girl do
     sequence(:name) { |n| "girl#{n}" }
