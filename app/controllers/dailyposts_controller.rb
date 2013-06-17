@@ -1,7 +1,7 @@
 # coding: utf-8
 class DailypostsController < InheritedResources::Base
   before_filter :authenticate_user!, except: [:today, :by_day]
-  before_filter :payment, only: [:show]
+  before_filter :payment, :post_tracker, only: [:show]
   
   def new
     @girl = Girl.find(params[:girl_id])
@@ -59,8 +59,16 @@ class DailypostsController < InheritedResources::Base
     if balance < 0 then
       flash[:alert] = "钱不够，请充值"
       redirect_to credit_orders_path(current_user.credit)
+    
+    else
+      user.credit.update_attributes(:balance => balance)
     end
     
-    user.credit.update_attributes(:balance => balance)
+    
+  end
+
+  def post_tracker
+    tracker = Dailypost.find(params[:id]).visit_histories.build(user_id: current_user.id)
+    tracker.save
   end
 end

@@ -3,5 +3,4 @@ h1= Time.now.strftime("%B %d")
 ul
   - @dailyposts.each do |dailypost|
     li
-      a href="#{dailypost.photo.url}"
-        = link_to qiniu_image(dailypost), dailypost_path(dailypost.id) 
+      = link_to qiniu_image(dailypost), girl_dailyposts_path(dailypost.girl_id) 

@@ -5,6 +5,7 @@ class Dailypost < ActiveRecord::Base
   mount_uploader :photo, AttachmentUploader
   mount_uploader :linkto, AttachmentUploader
   belongs_to :girl
+  has_many :visit_histories
 
   state_machine :state, initial: :default do
     state :default, :published
@@ -16,5 +17,9 @@ class Dailypost < ActiveRecord::Base
     event :cancel do
       transition :published => :default
     end
+  end
+
+  def visited?(user_id = 0)
+    self.visit_histories.where("user_id = #{user_id}").count > 0 ? true : false
   end
 end
