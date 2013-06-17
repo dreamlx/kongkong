@@ -43,6 +43,10 @@ class DailypostsController < InheritedResources::Base
     @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
   end
 
+  def index
+    @by_days = Dailypost.where("girl_id = #{params[:girl_id]}").order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
+  end
+
   def toggle_state
     @dailypost = Dailypost.find(params[:id])
 
