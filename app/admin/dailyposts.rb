@@ -1,6 +1,5 @@
 ActiveAdmin.register Dailypost do
   belongs_to :girl
-  navigation_menu :girl
 
     member_action :toggle_state, :method => :put do
     @dailypost = Dailypost.find(params[:id])
