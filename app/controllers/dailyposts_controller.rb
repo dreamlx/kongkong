@@ -40,7 +40,7 @@ class DailypostsController < InheritedResources::Base
   end
 
   def by_day
-    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
+    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at.strftime("%B %d") }
   end
 
   def index
