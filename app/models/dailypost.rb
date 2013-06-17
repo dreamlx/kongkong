@@ -22,4 +22,5 @@ class Dailypost < ActiveRecord::Base
   def visited?(user_id = 0)
     self.visit_histories.where("user_id = #{user_id}").count > 0 ? true : false
   end
+
 end

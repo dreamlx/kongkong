@@ -53,15 +53,19 @@ class DailypostsController < InheritedResources::Base
   private
   def payment
     user = User.find(current_user.id)
+    post = Dailypost.find(params[:id])
     balance = user.credit.balance
-    balance = balance - Dailypost.find(params[:id]).cost.to_i
+    balance = balance - post.cost.to_i
 
     if balance < 0 then
       flash[:alert] = "钱不够，请充值"
       redirect_to credit_orders_path(current_user.credit)
     
     else
-      user.credit.update_attributes(:balance => balance)
+      mycredit = user.credit
+      mycredit.update_attributes(:balance => balance)
+      #mycredit.create_credit_line_items.build(amount: post.cost.to_i)
+      mycredit.save
     end
     
     

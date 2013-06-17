@@ -12,7 +12,7 @@ Kongkong::Application.routes.draw do
     end   
   end
 
-  root to: "dailyposts#today" 
+  root to: "home#index" 
   
   ActiveAdmin.routes(self)
 
