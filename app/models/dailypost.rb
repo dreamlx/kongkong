@@ -1,5 +1,7 @@
 class Dailypost < ActiveRecord::Base
   attr_accessible :content, :girl_id, :linkto, :photo, :cost, :state
+  validates_presence_of :girl_id, :photo
+  validates_numericality_of :cost
   default_value_for :cost, 0
 
   mount_uploader :photo, AttachmentUploader

@@ -20,7 +20,7 @@ table class="table table-striped"
     - @dailyposts.each do |dailypost|
       tr
         td= link_to dailypost.id, girl_dailypost_path(params[:girl_id], dailypost)
-        td= dailypost.girl.name
+        td= dailypost.girl.name unless dailypost.girl.nil?
         td= link_to qiniu_image(dailypost), girl_dailypost_path(params[:girl_id], dailypost)
         td= dailypost.content
         /td= link_to dailypost.linkto.name, dailypost.linkto.url unless dailypost.linkto.blank?

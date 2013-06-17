@@ -9,15 +9,15 @@ class DailypostsController < InheritedResources::Base
   end
 
   def edit
-    @girl = Girl.find(params[:girl_id])
     @dailypost = Dailypost.find(params[:id])
+    @girl = Girl.find(params[:girl_id] || @dailypost.girl_id)
   end
 
   def create
     @dailypost = Dailypost.new(params[:dailypost])
     respond_to do |format|
       if @dailypost.save
-        format.html { redirect_to girl_dailyposts_path(params[:girl_id]), notice: 'Post was successfully created.' }
+        format.html { redirect_to girl_dailyposts_path(@dailypost.girl), notice: 'Post was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render action: "new" }
