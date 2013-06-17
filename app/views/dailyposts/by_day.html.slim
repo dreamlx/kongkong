@@ -1,7 +1,8 @@
 = render :partial => "share/sub_menu"
 - @by_days.each do |day, posts|
   h1= day
-  ul
+  ul.thumbnails
     - posts.each do |dailypost|
       - unless dailypost.photo.blank?
-        li= link_to qiniu_image(dailypost), dailypost_path(dailypost.id) 
+        li.span2
+          = link_to qiniu_image(dailypost), dailypost_path(dailypost.id), class: "thumbnail"
