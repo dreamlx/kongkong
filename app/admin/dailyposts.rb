@@ -31,7 +31,7 @@ ActiveAdmin.register Dailypost do
     end
     column :cost
     column "State" do |post|
-      link_to post.state, toggle_state_admin_girl_dailypost_path(girl,post), method: "PUT"
+      link_to post.state_name, toggle_state_admin_girl_dailypost_path(girl,post), method: "PUT"
     end
     column :content
     column :created_at
