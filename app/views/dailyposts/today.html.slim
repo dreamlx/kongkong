@@ -1,6 +1,6 @@
-= render :partial => "share/sub_menu"
+
 h1= Time.now.strftime("%B %d")
 ul.thumbnails
   - @dailyposts.each do |dailypost|
-    li.span4
-      = link_to qiniu_image(dailypost), girl_dailyposts_path(dailypost.girl_id), class: "thumbnail"
+    li.span8
+      = link_to image_tag(dailypost.photo.url), girl_dailyposts_path(dailypost.girl_id), class: "thumbnail", title: dailypost.girl.name
