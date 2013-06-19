@@ -1,0 +1,8 @@
+.hero-unit
+  h1 空空
+  h2 美女主播每天奉献大量私房照片，还有额外惊喜
+
+ul.thumbnails
+  - @dailyposts.each do |dailypost|
+    li.span8
+      = link_to image_tag(dailypost.photo.url), girl_dailyposts_path(dailypost.girl_id), class: "thumbnail", title: dailypost.girl.name

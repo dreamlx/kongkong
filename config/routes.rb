@@ -29,7 +29,7 @@ Kongkong::Application.routes.draw do
   resources :girls do
     resources :dailyposts do
       member do
-        put 'toggle_state'
+        put 'toggle_publish'
       end
     end
   end

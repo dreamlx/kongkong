@@ -1,6 +1,6 @@
 # coding: utf-8
 class DailypostsController < InheritedResources::Base
-  before_filter :authenticate_user!, except: [:today, :by_day]
+  before_filter :authenticate_user!, except: [:index, :by_day]
   before_filter :payment, :post_tracker, only: [:show]
   
   def new
@@ -35,10 +35,6 @@ class DailypostsController < InheritedResources::Base
     end
   end
 
-  def today
-    @dailyposts = Dailypost.where(["state = ?", "published"])
-  end
-
   def by_day
     @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at.strftime("%B %d") }
   end
@@ -47,7 +43,7 @@ class DailypostsController < InheritedResources::Base
     @by_days = Dailypost.where("girl_id = #{params[:girl_id]}").order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
   end
 
-  def toggle_state
+  def toggle_publish
     @dailypost = Dailypost.find(params[:id])
 
     @dailypost.published? ? @dailypost.cancel : @dailypost.push_home

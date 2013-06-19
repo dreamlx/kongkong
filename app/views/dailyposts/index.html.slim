@@ -2,7 +2,7 @@
 div class="page-header"
   h1
     = Girl.find(params[:girl_id]).name
-    '|
+    = " "
     =t '.title', :default => model_class.model_name.human.pluralize
 
 
