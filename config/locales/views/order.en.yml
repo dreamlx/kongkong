@@ -1,0 +1,5 @@
+en:
+  orders:
+    index:
+      title: Orders
+      payment: "Payment: %{price} RMB"

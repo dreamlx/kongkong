@@ -1,6 +1,6 @@
 .hero-unit
-  h1 空空
-  h2 美女主播每天奉献大量私房照片，还有额外惊喜
+  h1= t(".title")
+  h2= t(".slogon")
 
 ul.thumbnails
   - @dailyposts.each do |dailypost|
