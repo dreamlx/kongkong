@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      credit: 账户
+    attributes:
+      credit:
+        balance: 账户余额：
+        start_balance: 初始余额：

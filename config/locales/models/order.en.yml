@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      order: Order
+    attributes:
+      order:
+        credit_quantity: Credit quantity
+        number: Number
+        state: State
+        created_at: Created at

@@ -1,5 +1,5 @@
 doctype html
-html lang="en"
+html lang="zh-CN"
   head
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
@@ -25,21 +25,24 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand href="/"Kongkong
+          a.brand href="/" 
+            = t("layouts.menu.Brand")
           .container-fluid.nav-collapse
             ul.nav.pull-right
-              li= link_to "Home", root_path
-              li= link_to "Girls", by_day_dailyposts_path
+              li= link_to t("layouts.menu.Home"), root_path
+              li= link_to t("layouts.menu.Girls"), by_day_dailyposts_path
               - if user_signed_in?
-                li= link_to "Loser", edit_user_registration_path
-                li= link_to "Orders", credit_orders_path(current_user.credit)
-                li= link_to "Credit", credit_path(current_user.credit)
-                li= link_to "Logout", destroy_user_session_path, :method => :delete
+                li= link_to t("layouts.menu.Loser"), edit_user_registration_path
+                li= link_to t("layouts.menu.Orders"), credit_orders_path(current_user.credit)
+                li= link_to t("layouts.menu.Credit"), credit_path(current_user.credit)
+                li= link_to t("layouts.menu.Logout"), destroy_user_session_path, :method => :delete
               - else
-                li= link_to "Register", new_user_registration_path
-                li= link_to "login", new_user_session_path
-                
-
+                li= link_to t("layouts.menu.Register"), new_user_registration_path
+                li= link_to t("layouts.menu.Login"), new_user_session_path         
+      .pull-right
+        = link_to "中文版", {:controller => controller.controller_name, :action => controller.action_name, :locale => "zh-CN"}
+        '|             
+        = link_to "English", {:controller => controller.controller_name, :action => controller.action_name, :locale => "en"}
     .container-fluid
       = bootstrap_flash
       = yield

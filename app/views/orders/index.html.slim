@@ -1,14 +1,16 @@
-h1 Listing orders 
+- model_class = Order
+h1
+  =t '.title', :default => model_class.model_name.human
 p.nav
-  .span= link_to 'Payment 5', credit_orders_path(current_user.credit, :price => 5), method: "POST", class: "btn btn-warning"
-  .span= link_to 'Payment 20', credit_orders_path(current_user.credit,:price => 20), method: "POST", class: "btn btn-warning"
-  .span= link_to 'Payment 100', credit_orders_path(current_user.credit,:price => 100), method: "POST", class: "btn btn-warning"
+  .span= link_to t(".payment", price: 5), credit_orders_path(current_user.credit, :price => 5), method: "POST", class: "btn btn-warning"
+  .span= link_to t(".payment", price: 20), credit_orders_path(current_user.credit,:price => 20), method: "POST", class: "btn btn-warning"
+  .span= link_to t(".payment", price: 100), credit_orders_path(current_user.credit,:price => 100), method: "POST", class: "btn btn-warning"
 table.table
   tr
-    th Credit quantity
-    th Number
-    th State
-    th Created_at
+    th= model_class.human_attribute_name(:credit_quantity)
+    th= model_class.human_attribute_name(:number)
+    th= model_class.human_attribute_name(:state)
+    th== model_class.human_attribute_name(:created_at)
 
   - @orders.each do |order|
     tr

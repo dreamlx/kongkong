@@ -22,8 +22,13 @@ gem 'awesome_nested_set'
 gem 'fog'
 gem 'default_value_for', '~> 2.0.1'
 
+# deploy
 gem "rvm-capistrano"
 gem 'capistrano', '~> 2.12.0'
+
+# i18n
+gem 'rails-i18n'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

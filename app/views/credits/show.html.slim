@@ -1,10 +1,13 @@
+- model_class = Credit
 p#notice = notice
 h1 = @credit.user.username||""
 hr
 p
-  strong Start balance:
+  strong 
+    = model_class.human_attribute_name(:start_balance)
   = @credit.start_balance
 p
-  strong Balance:
+  strong 
+    = model_class.human_attribute_name(:balance)
   = @credit.balance
 

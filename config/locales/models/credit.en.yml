@@ -1,0 +1,8 @@
+en:
+  activerecord:
+    models:
+      credit: Credit
+    attributes:
+      credit:
+        balance: "Balance: "
+        start_balance: "Start Balance: "

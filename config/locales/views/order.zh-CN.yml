@@ -1,0 +1,5 @@
+zh-CN:
+  orders:
+    index:
+      title: 订单
+      payment: "支付 %{price}元"
