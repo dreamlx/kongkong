@@ -5,6 +5,7 @@ Kongkong::Application.routes.draw do
   resources :credits do
     resources :orders
   end
+
   resources :dailyposts do
     collection do
       get "today"
@@ -40,6 +41,7 @@ Kongkong::Application.routes.draw do
       collection do
         get "today"
         get "by_day"
+        get "home"
       end
     end
 

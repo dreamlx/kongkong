@@ -1,6 +1,6 @@
 # coding: utf-8
 class DailypostsController < InheritedResources::Base
-  before_filter :authenticate_user!, except: [:index, :by_day]
+  #before_filter :authenticate_user!, except: [:index, :by_day]
   before_filter :payment, :post_tracker, only: [:show]
   
   def new
@@ -41,6 +41,10 @@ class DailypostsController < InheritedResources::Base
 
   def index
     @by_days = Dailypost.where("girl_id = #{params[:girl_id]}").order("updated_at DESC").group_by{|dy| dy.updated_at.strftime("%B %d") }
+    respond_to do |format|
+      format.html { render :index}
+      format.json { render json: @by_days }
+    end
   end
 
   def toggle_publish
