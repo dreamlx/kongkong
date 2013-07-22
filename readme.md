@@ -7,6 +7,44 @@ action method 没有特别说明，默认为'GET'
 
 调试工具：我是firefox，用poster
 
+### updated: 2013-7-22
+
+# 登录登出
+
+##注册用户：
+    curl -X POST 'http://42.120.9.87:3020/api/users.json' -d 'user[email]=aaa@test.com&user[password]=12345678&user[password_confirmation]=12345678' 
+
+或者
+
+    http://42.120.9.87:3020/users/sign_up
+
+## 编辑用户
+    curl -X PUT 'http://42.120.9.87:3020/api/users/1.json' -d 'user[email]=aaa@test.com&user[password]=12345678&user[password_confirmation]=12345678'
+
+## login
+    http://42.120.9.87:3020/users/sign_in
+
+## logout
+    http://42.120.9.87:3020/users/sign_out
+
+
+#dailyposts
+
+## post all list, /api/dailyposts
+    http://42.120.9.87:3020/api/dailyposts.json
+
+## get a post, /api/dailypost/:id
+    http://42.120.9.87:3020/api/dailyposts/6.json
+
+## get home list
+    http://42.120.9.87:3020/api/dailyposts/home.json
+
+## get by_days
+    http://42.120.9.87:3020/api/dailyposts/by_days.json
+
+## get my girls(必须登录)
+    http://42.120.9.87:3020/api/dailyposts/my_girls.json
+
 ###updated:2013-6-6
 #about me 获取当前登录用户帐号和余额信息 /api/losers/aboutme
     http://42.120.9.87:3020/api/losers/aboutme.json
@@ -24,13 +62,4 @@ action method 没有特别说明，默认为'GET'
 
 ## get a girl, /api/girls/:id
     http://42.120.9.87:3020/api/girls/2.json
-
-
-#dailyposts
-
-## post list, /api/dailyposts
-    http://42.120.9.87:3020/api/dailyposts.json
-
-## get a post, /api/dailypost/:id
-    http://42.120.9.87:3020/api/dailyposts/6.json
 

@@ -1,4 +1,5 @@
 class Api::DailypostsController < ApplicationController
+  before_filter :authenticate_user!, only: [:my_girls]
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
@@ -19,7 +20,7 @@ class Api::DailypostsController < ApplicationController
   end
 
   def my_girls
-    @dailyposts = Dailypost.my_girls(params[:loser_id])
+    @dailyposts = Dailypost.my_girls(current_user.id)
     render :index
   end
 end

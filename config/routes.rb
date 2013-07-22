@@ -42,6 +42,7 @@ Kongkong::Application.routes.draw do
         get "today"
         get "by_days"
         get "home"
+        get "my_girls"
       end
     end
 
@@ -50,6 +51,8 @@ Kongkong::Application.routes.draw do
         get 'aboutme'
       end
     end
+
+    resources :users
     resources :credits
     resources :orders
   end
