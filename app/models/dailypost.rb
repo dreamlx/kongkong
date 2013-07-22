@@ -3,11 +3,15 @@ class Dailypost < ActiveRecord::Base
   validates_presence_of :girl_id, :photo
   validates_numericality_of :cost
   default_value_for :cost, 0
+  scope :published_items, lambda { where("state = 'published'") }
 
   mount_uploader :photo, AttachmentUploader
-  mount_uploader :linkto, AttachmentUploader
+
   belongs_to :girl
   has_many :visit_histories
+
+  has_many :loser_likes, class_name: "LoserLike", :dependent => :destroy
+  has_many :losers, through: :loser_likes
 
   state_machine :state, initial: :default do
     state :default, :published
@@ -23,6 +27,10 @@ class Dailypost < ActiveRecord::Base
 
   def visited?(user_id = 0)
     self.visit_histories.where("user_id = #{user_id}").count > 0 ? true : false
+  end
+
+  def my_girls(loser_id)
+    self.joins(:loser_likes).where("loser_id = #{loser_id}")
   end
 
 end

@@ -1,0 +1,10 @@
+div class="page-header"
+  h1 All Girls
+
+- @by_days.each do |day, posts|
+  h1= day
+  ul.thumbnails
+    - posts.each do |dailypost|
+      - unless dailypost.photo.blank?
+        li.span4
+          = link_to qiniu_image(dailypost), dailypost_path(dailypost.id), class: "thumbnail"

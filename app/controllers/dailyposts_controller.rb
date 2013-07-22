@@ -35,8 +35,14 @@ class DailypostsController < InheritedResources::Base
     end
   end
 
-  def by_day
-    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at.strftime("%B %d") }
+  def by_days
+    by_days = Dailypost.order("updated_at DESC").each { |item| item.linkto = "/api/dailyposts/#{item.id}.json" }
+    @by_days = by_days.group_by{|dy| dy.created_at.strftime("%B %d") }
+
+    respond_to do |format|
+      format.html { render :by_days }
+      format.json { render json: @by_days }
+    end
   end
 
   def index
@@ -56,27 +62,32 @@ class DailypostsController < InheritedResources::Base
 
   private
   def payment
-    user = User.find(current_user.id)
-    post = Dailypost.find(params[:id])
-    balance = user.credit.balance
-    balance = balance - post.cost.to_i
+    if params[:id] =~ /\d+/
+      user = User.find(current_user.id)
+      post = Dailypost.find(params[:id])
+      balance = user.credit.balance
+      balance = balance - post.cost.to_i
 
-    if balance < 0 then
-      flash[:alert] = "钱不够，请充值"
-      redirect_to credit_orders_path(current_user.credit)
-    
+      if balance < 0 then
+        flash[:alert] = "钱不够，请充值"
+        redirect_to credit_orders_path(current_user.credit)
+      else
+        mycredit = user.credit
+        mycredit.update_attributes(:balance => balance)
+        #mycredit.create_credit_line_items.build(amount: post.cost.to_i)
+        mycredit.save
+      end
     else
-      mycredit = user.credit
-      mycredit.update_attributes(:balance => balance)
-      #mycredit.create_credit_line_items.build(amount: post.cost.to_i)
-      mycredit.save
+      redirect_to root_path
     end
-    
-    
   end
 
   def post_tracker
-    tracker = Dailypost.find(params[:id]).visit_histories.build(user_id: current_user.id)
-    tracker.save
+    if params[:id] =~ /\d+/
+      tracker = Dailypost.find(params[:id]).visit_histories.build(user_id: current_user.id)
+      tracker.save
+    else
+      redirect_to root_path
+    end      
   end
 end

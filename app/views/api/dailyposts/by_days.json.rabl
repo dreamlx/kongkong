@@ -1,0 +1,1 @@
+collection @by_days

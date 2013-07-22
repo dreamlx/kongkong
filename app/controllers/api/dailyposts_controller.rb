@@ -6,22 +6,20 @@ class Api::DailypostsController < ApplicationController
   
   def show
     @dailypost = Dailypost.find(params[:id])
+    @dailypost.linkto = @dailypost.photo_url
   end
 
-
-  def today
-    @dailyposts = Dailypost.where(["state = ?", "published"])
-  end
-
-  def by_day
-    @dailyposts = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at }
+  def by_days
+    @by_days = Dailypost.order("updated_at DESC").group_by{|dy| dy.created_at.strftime("%B %d") }
   end
   
   def home
-    @dailyposts = []
-  
-    Girl.all.each do |girl|
-      @dailyposts << girl.publish_posts.last unless girl.publish_posts.blank?
-    end
+    @dailyposts = Dailypost.published_items.each{ |item| item.linkto = "/api/dailyposts/by_days.json" }
+    render :index
+  end
+
+  def my_girls
+    @dailyposts = Dailypost.my_girls(params[:loser_id])
+    render :index
   end
 end

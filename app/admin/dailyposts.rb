@@ -1,12 +1,17 @@
 ActiveAdmin.register Dailypost do
-  belongs_to :girl
+  #belongs_to :girl
+  filter :state, :as => :select, collection: [ "default", "published"]
+  filter :cost
+  filter :girl
+  filter :content
+  filter :created_at
+  filter :updated_at
+  member_action :toggle_publish, :method => :put do
+  @dailypost = Dailypost.find(params[:id])
 
-    member_action :toggle_publish, :method => :put do
-    @dailypost = Dailypost.find(params[:id])
-
-    @dailypost.published? ? @dailypost.cancel : @dailypost.push_home
-      redirect_to admin_girl_dailyposts_path(@dailypost.girl), {:notice => "state was changed!"}
-    end
+  @dailypost.published? ? @dailypost.cancel : @dailypost.push_home
+    redirect_to admin_dailyposts_path(@dailypost), {:notice => "state was changed!"}
+  end
 
   form do |f|
     f.inputs "Details" do
@@ -30,7 +35,7 @@ ActiveAdmin.register Dailypost do
     end
     column :cost
     column "State" do |post|
-      link_to post.state_name, toggle_publish_admin_girl_dailypost_path(girl,post), method: "PUT"
+      link_to post.state_name, toggle_publish_admin_dailypost_path(post), method: "PUT"
     end
     column :content
     column :created_at

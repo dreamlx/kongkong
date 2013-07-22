@@ -1,7 +1,7 @@
 # coding: utf-8
 require_relative "util"
 begin
-  num = 522 # page 85
+  num = gets().to_i # page 85
   start_url = "http://jandan.net/ooxx/page-#{num}\#comments"
   while start_url != nil && !start_url.empty? do
     print "开始下载#{start_url}\n"

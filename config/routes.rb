@@ -9,7 +9,7 @@ Kongkong::Application.routes.draw do
   resources :dailyposts do
     collection do
       get "today"
-      get "by_day"
+      get "by_days"
     end   
   end
 
@@ -40,7 +40,7 @@ Kongkong::Application.routes.draw do
     resources :dailyposts do
       collection do
         get "today"
-        get "by_day"
+        get "by_days"
         get "home"
       end
     end

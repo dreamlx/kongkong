@@ -1,6 +1,6 @@
 class Loser < User
   has_many :loser_likes, class_name: "LoserLike", :dependent => :destroy
-  has_many :girls, through: :loser_likes
+  has_many :dailyposts, through: :loser_likes
 
   def favor_toggle(girl)
     if girls.find(:all, :conditions => ["girls.id = ?", girl.id]).blank?
