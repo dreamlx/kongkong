@@ -17,7 +17,7 @@ class DailypostsController < InheritedResources::Base
     @dailypost = Dailypost.new(params[:dailypost])
     respond_to do |format|
       if @dailypost.save
-        format.html { redirect_to girl_dailyposts_path(@dailypost.girl), notice: 'Post was successfully created.' }
+        format.html { redirect_to dailyposts_path, notice: 'Post was successfully created.' }
         format.json { head :no_content }
       else
         format.html { render action: "new" }
@@ -58,6 +58,13 @@ class DailypostsController < InheritedResources::Base
 
     @dailypost.published? ? @dailypost.cancel : @dailypost.push_home
     redirect_to girl_dailyposts_path(params[:girl_id])
+  end
+
+
+  def toggle_favor
+    @dailypost = Dailypost.find(params[:id])
+    Loser.find(current_user).favor_toggle(@dailypost)
+    redirect_to dailypost_path(@dailypost)
   end
 
   private

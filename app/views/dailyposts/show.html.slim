@@ -1,6 +1,11 @@
 - model_class = Dailypost
+
 div class="page-header"
   h1=t '.title', :default => model_class.model_name.human
+
+- @state = Loser.find(current_user).favor_state(@dailypost) ? "Unlike" : "Like"
+p= link_to @state, toggle_favor_girl_dailypost_path(@dailypost), method: "PUT", class: "btn btn-smaller btn-warning"
+
 p
   strong= model_class.human_attribute_name(:updated_at) + ':'
   br
@@ -25,7 +30,7 @@ p
   strong = model_class.human_attribute_name(:cost) + ':'
   = @dailypost.cost
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), by_day_dailyposts_path, :class => 'btn'
+  = link_to t('.back', :default => t("helpers.links.back")), by_days_dailyposts_path, :class => 'btn'
   '
   /= link_to t('.edit', :default => t("helpers.links.edit")), edit_dailypost_path(@dailypost), :class => 'btn'
   '

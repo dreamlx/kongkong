@@ -3,8 +3,13 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   after_create { |user| user.create_credit(:start_balance => 0,:balance => 0) }
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise  :database_authenticatable, 
+          :registerable, 
+          :token_authenticatable,
+          :recoverable, 
+          :rememberable, 
+          :trackable, 
+          :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, 

@@ -22,7 +22,6 @@ Kongkong::Application.routes.draw do
   
   resources :losers do
     member do
-      put 'toggle'
       put 'payment'
     end
   end
@@ -31,6 +30,7 @@ Kongkong::Application.routes.draw do
     resources :dailyposts do
       member do
         put 'toggle_publish'
+        put 'toggle_favor'
       end
     end
   end
@@ -45,6 +45,8 @@ Kongkong::Application.routes.draw do
         get "my_girls"
       end
     end
+
+    resources :tokens, only: [:create, :destroy]
 
     resources :losers do
       collection do

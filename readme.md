@@ -7,6 +7,9 @@ action method 没有特别说明，默认为'GET'
 
 调试工具：我是firefox，用poster
 
+图片处理见
+http://docs.qiniu.com/api/image-process.html
+
 ### updated: 2013-7-22
 
 # 登录登出

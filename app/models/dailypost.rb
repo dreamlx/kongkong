@@ -29,7 +29,7 @@ class Dailypost < ActiveRecord::Base
     self.visit_histories.where("user_id = #{user_id}").count > 0 ? true : false
   end
 
-  def my_girls(loser_id)
+  def self.my_girls(loser_id)
     self.joins(:loser_likes).where("loser_id = #{loser_id}")
   end
 

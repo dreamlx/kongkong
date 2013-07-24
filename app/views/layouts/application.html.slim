@@ -30,7 +30,7 @@ html lang="zh-CN"
           .container-fluid.nav-collapse
             ul.nav.pull-right
               li= link_to t("layouts.menu.Home"), root_path
-              li= link_to t("layouts.menu.Girls"), by_day_dailyposts_path
+              li= link_to t("layouts.menu.Girls"), by_days_dailyposts_path
               - if user_signed_in?
                 li= link_to t("layouts.menu.Loser"), edit_user_registration_path
                 li= link_to t("layouts.menu.Orders"), credit_orders_path(current_user.credit)

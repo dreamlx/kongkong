@@ -2,15 +2,15 @@ class Loser < User
   has_many :loser_likes, class_name: "LoserLike", :dependent => :destroy
   has_many :dailyposts, through: :loser_likes
 
-  def favor_toggle(girl)
-    if girls.find(:all, :conditions => ["girls.id = ?", girl.id]).blank?
-      girls << girl
+  def favor_toggle(dailypost)
+    if dailyposts.find(:all, :conditions => ["dailyposts.id = ?", dailypost.id]).blank?
+      dailyposts << dailypost
     else
-      girls.delete(girl)
+      dailyposts.delete(dailypost)
     end
   end
 
-  def favor_state(girl)
-    !girls.find(:all, :conditions => ["girls.id = ?", girl.id]).blank?
+  def favor_state(dailypost)
+    !dailyposts.find(:all, :conditions => ["dailyposts.id = ?", dailypost.id]).blank?
   end
 end

@@ -1,5 +1,5 @@
 class Api::DailypostsController < ApplicationController
-  before_filter :authenticate_user!, only: [:my_girls]
+  before_filter :authenticate_user!, only: [:my_girls, :home]
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")

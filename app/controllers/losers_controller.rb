@@ -13,12 +13,6 @@ class LosersController < ApplicationController
     end
   end
 
-  def toggle
-    @girl = Girl.find(params[:id])
-    Loser.find(current_user).favor_toggle(@girl)
-    redirect_to girl_path(@girl)
-  end
-
   def payment
     user = User.find(params[:id])
     balance = user.credit.balance
