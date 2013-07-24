@@ -9,6 +9,16 @@ action method 没有特别说明，默认为'GET'
 
 图片处理见
 http://docs.qiniu.com/api/image-process.html
+### updated: 2013-7-24
+# token
+## 获取token，参数email, password, 返回一个json格式的token字符串 
+    curl -X POST "http://127.0.0.1:3000/api/tokens.json" -d "email=aaa@test.com&password=12345678"
+
+## 注销token， api后面直接放返回的token字符串
+    curl -X DELETE "http://127.0.0.1:3000/api/tokens/3hZ7vLKUA9kWMKz2ZUxA" 
+
+## 使用token， 直接在需要访问的url后面跟参数auth_token
+    curl -X GET "http://127.0.0.1:3000/api/dailyposts/my_girls.json?auth_token=3hZ7vLKUA9kWMKz2ZUxA"
 
 ### updated: 2013-7-22
 
