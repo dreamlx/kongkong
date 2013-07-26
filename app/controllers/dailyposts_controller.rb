@@ -55,7 +55,6 @@ class DailypostsController < InheritedResources::Base
 
   def toggle_publish
     @dailypost = Dailypost.find(params[:id])
-
     @dailypost.published? ? @dailypost.cancel : @dailypost.push_home
     redirect_to girl_dailyposts_path(params[:girl_id])
   end
@@ -64,7 +63,12 @@ class DailypostsController < InheritedResources::Base
   def toggle_favor
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
-    redirect_to dailypost_path(@dailypost)
+   
+    respond_to do |format|
+      format.html { redirect_to dailypost_path(@dailypost) }
+      format.json { @daiypost }
+    end
+    
   end
 
   private
