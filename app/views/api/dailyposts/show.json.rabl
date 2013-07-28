@@ -1,5 +1,5 @@
 object @dailypost
-attributes :id, :updated_at, :girl_id, :content, :cost, :linkto, :favor_state
+attributes :id, :updated_at, :girl_id, :content, :cost, :linkto, :favor_state, :payment_state
 
 node :photo_url do |d| 
   d.photo.url 

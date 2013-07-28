@@ -10,8 +10,14 @@ action method 没有特别说明，默认为'GET'
 图片处理见
 http://docs.qiniu.com/api/image-process.html
 ### updated: 2013-7-28
-## add favor action api:toggle_favor, 返回结果多了一个favor_state
-    url -X POST "http://127.0.0.1:3000/api/dailyposts/18/toggle_favor.json?auth_token=BfVsBvt5Wm6kDzftihUp" 
+pay_it 和 toggle_favor 返回的dailypost都是不完整json
+访问get a post, /api/dailypost/:id可以获得完整json。
+## pay_it, 支付照片cost，返回payment_state状态
+    curl -X POST "http://127.0.0.1:3000/api/dailyposts/18/pay_it.json?auth_token=BfVsBvt5Wm6kDzftihUp"
+
+    {"dailypost":{"content":"","cost":0,"created_at":"2013-06-17T03:31:17Z","girl_id":1,"id":18,"linkto":null,"photo":{"url":"http://kongkong.qiniudn.com/kongkong/dailypost/photo/18/605b98f623353d959f809322ff10c054.jpg"},"state":"published","updated_at":"2013-06-17T07:35:06Z"},"payment_state":"paid"}
+## add favor action api:toggle_favor, 返回favor_state
+    curl -X POST "http://127.0.0.1:3000/api/dailyposts/18/toggle_favor.json?auth_token=BfVsBvt5Wm6kDzftihUp" 
     
     {"dailypost":{"content":"","cost":0,"created_at":"2013-06-17T03:31:17Z","favor_state":"unlike","girl_id":1,"id":18,"linkto":null,"photo":{"url":"http://kongkong.qiniudn.com/kongkong/dailypost/photo/18/605b98f623353d959f809322ff10c054.jpg"},"state":"published","updated_at":"2013-06-17T07:35:06Z"},"favor_state":"unlike"}
 

@@ -35,9 +35,17 @@ class Api::DailypostsController < ApplicationController
   def toggle_favor
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
-    render json: { dailypost: @dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
+    render json: { dailypost:@dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 
-  #todo
-  # payment it
+  def pay_it
+    @dailypost = Dailypost.find(params[:id])
+    visit_log = VisitHistory.where("user_id = #{current_user.id} and dailypost_id = #{@dailypost.id}").first
+
+    visit_log.update_attributes(state: "paid") if visit_log.state != 'paid'
+    render json: { dailypost:@dailypost, payment_state: @dailypost.payment_state }
+
+    #todo 扣款
+  end
+
 end

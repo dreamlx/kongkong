@@ -25,9 +25,18 @@ class Dailypost < ActiveRecord::Base
     end
   end
 
-  attr_accessor :favor_state
+  attr_accessor :favor_state, :payment_state
   def favor_state
     Loser.find(User.current_user).favor_state(self)
+  end
+
+  def payment_state
+    v = VisitHistory.where("user_id = #{User.current_user.id} and dailypost_id = #{self.id}").first
+    if v
+      v.state
+    else
+      "unpaid"
+    end
   end
 
   def visited?(user_id = 0)
