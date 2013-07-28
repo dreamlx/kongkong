@@ -1,5 +1,5 @@
 class Api::DailypostsController < ApplicationController
-  before_filter :authenticate_user!, only: [:my_girls]
+  before_filter :authenticate_user!
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
@@ -8,6 +8,10 @@ class Api::DailypostsController < ApplicationController
   def show
     @dailypost = Dailypost.find(params[:id])
     @dailypost.linkto = @dailypost.photo_url
+
+    tracker = @dailypost.visit_histories.build(current_user.id)
+    tracker.save
+    
     @favor_state = Loser.find(current_user).favor_state(@dailypost)
   end
 
@@ -32,4 +36,6 @@ class Api::DailypostsController < ApplicationController
     render json: { dailypost: @dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 
+  #todo
+  # payment it
 end
