@@ -44,6 +44,10 @@ Kongkong::Application.routes.draw do
         get "home"
         get "my_girls"
       end
+
+      member do
+        post "toggle_favor"
+      end
     end
 
     resources :tokens, only: [:create, :destroy]

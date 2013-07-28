@@ -68,7 +68,6 @@ class DailypostsController < InheritedResources::Base
       format.html { redirect_to dailypost_path(@dailypost) }
       format.json { @daiypost }
     end
-    
   end
 
   private

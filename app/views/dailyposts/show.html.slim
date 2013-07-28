@@ -3,7 +3,7 @@
 div class="page-header"
   h1=t '.title', :default => model_class.model_name.human
 
-- @state = Loser.find(current_user).favor_state(@dailypost) ? "Unlike" : "Like"
+- @state = Loser.find(current_user).favor_state(@dailypost)
 p= link_to @state, toggle_favor_girl_dailypost_path(@dailypost), method: "PUT", class: "btn btn-smaller btn-warning"
 
 p

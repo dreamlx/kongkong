@@ -11,6 +11,10 @@ class Loser < User
   end
 
   def favor_state(dailypost)
-    !dailyposts.find(:all, :conditions => ["dailyposts.id = ?", dailypost.id]).blank?
+    unless dailyposts.find(:all, :conditions => ["dailyposts.id = ?", dailypost.id]).blank?
+      "like"
+    else
+      "unlike"
+    end
   end
 end

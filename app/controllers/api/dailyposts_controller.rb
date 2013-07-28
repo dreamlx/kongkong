@@ -24,4 +24,13 @@ class Api::DailypostsController < ApplicationController
     render :index
   end
 
+  def toggle_favor
+    @dailypost = Dailypost.find(params[:id])
+    Loser.find(current_user).favor_toggle(@dailypost)
+    render json: { 
+      daliypost: @dailypost, 
+      result: Loser.find(current_user).favor_state(@dailypost)
+    }
+  end
+
 end
