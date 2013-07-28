@@ -2,8 +2,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_local
 
+  before_filter :set_current_user
 
- protected
+  def set_current_user
+    User.current_user = current_user
+  end
+  
+  protected
 
   def set_local
     if params[:locale]&&["en","zh-CN"].include?(params[:locale])

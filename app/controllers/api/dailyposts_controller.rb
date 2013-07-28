@@ -8,11 +8,14 @@ class Api::DailypostsController < ApplicationController
   def show
     @dailypost = Dailypost.find(params[:id])
     @dailypost.linkto = @dailypost.photo_url
+    visit_log = VisitHistory.where("user_id = #{current_user.id} and dailypost_id = #{@dailypost.id}").first
 
-    tracker = @dailypost.visit_histories.build(current_user.id)
-    tracker.save
-    
-    @favor_state = Loser.find(current_user).favor_state(@dailypost)
+    if visit_log
+      visit_log.update_attributes(visit_count: (visit_log.visit_count.to_i + 1))
+    else
+      tracker = @dailypost.visit_histories.build(user_id: current_user.id, visit_count: 1)
+      tracker.save
+    end
   end
 
   def by_days
@@ -32,7 +35,6 @@ class Api::DailypostsController < ApplicationController
   def toggle_favor
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
-    @dailypost[:favor_state] = Loser.find(current_user).favor_state(@dailypost)
     render json: { dailypost: @dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 

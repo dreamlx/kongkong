@@ -25,6 +25,11 @@ class Dailypost < ActiveRecord::Base
     end
   end
 
+  attr_accessor :favor_state
+  def favor_state
+    Loser.find(User.current_user).favor_state(self)
+  end
+
   def visited?(user_id = 0)
     self.visit_histories.where("user_id = #{user_id}").count > 0 ? true : false
   end
