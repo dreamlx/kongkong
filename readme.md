@@ -9,6 +9,17 @@ action method 没有特别说明，默认为'GET'
 
 图片处理见
 http://docs.qiniu.com/api/image-process.html
+### updated: 2013-7-28
+## add favor action api:toggle_favor, 返回结果多了一个favor_state
+    url -X POST "http://127.0.0.1:3000/api/dailyposts/18/toggle_favor.json?auth_token=BfVsBvt5Wm6kDzftihUp" 
+    
+    {"dailypost":{"content":"","cost":0,"created_at":"2013-06-17T03:31:17Z","favor_state":"unlike","girl_id":1,"id":18,"linkto":null,"photo":{"url":"http://kongkong.qiniudn.com/kongkong/dailypost/photo/18/605b98f623353d959f809322ff10c054.jpg"},"state":"published","updated_at":"2013-06-17T07:35:06Z"},"favor_state":"unlike"}
+
+## show dailypost api， 在dailypost中多了一个node:favor_state
+    curl "http://127.0.0.1:3000/api/dailyposts/18.json?auth_token=BfVsBvt5Wm6kDzftihUp"
+
+    {"dailypost":{"id":18,"updated_at":"2013-06-17T07:35:06Z","girl_id":1,"content":"","cost":0,"linkto":"http://kongkong.qiniudn.com/kongkong/dailypost/photo/18/605b98f623353d959f809322ff10c054.jpg","photo_url":"http://kongkong.qiniudn.com/kongkong/dailypost/photo/18/605b98f623353d959f809322ff10c054.jpg","favor_state":"unlike"}}%                                 
+
 ### updated: 2013-7-24
 # token
 ## 获取token，参数email, password, 返回一个json格式的token字符串 

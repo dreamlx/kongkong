@@ -8,6 +8,7 @@ class Api::DailypostsController < ApplicationController
   def show
     @dailypost = Dailypost.find(params[:id])
     @dailypost.linkto = @dailypost.photo_url
+    @favor_state = Loser.find(current_user).favor_state(@dailypost)
   end
 
   def by_days
@@ -27,10 +28,8 @@ class Api::DailypostsController < ApplicationController
   def toggle_favor
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
-    render json: { 
-      daliypost: @dailypost, 
-      result: Loser.find(current_user).favor_state(@dailypost)
-    }
+    @dailypost[:favor_state] = Loser.find(current_user).favor_state(@dailypost)
+    render json: { dailypost: @dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 
 end

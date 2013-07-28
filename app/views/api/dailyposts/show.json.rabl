@@ -5,3 +5,6 @@ node :photo_url do |d|
   d.photo.url 
 end
 
+node :favor_state do |d|
+  @favor_state
+end
