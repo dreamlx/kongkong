@@ -9,6 +9,29 @@ action method 没有特别说明，默认为'GET'
 
 图片处理见
 http://docs.qiniu.com/api/image-process.html
+
+### updated: 2013-7-29
+## aboutme， 获取当前帐号的基本信息，包括帐号余额
+    action:GET
+    curl "http://127.0.0.1:3000/api/losers/aboutme.json?auth_token=BfVsBvt5Wm6kDzftihUp"
+
+    {"user":{"id":14,"username":null,"email":"aaa@test.com","credit":{"id":13,"created_at":"2013-07-22T23:23:55Z","balance":"0.0","start_balance":"0.0"}}}%             
+
+## 为指定帐号创建订单并充值 create order,
+    action: POST
+    参数：price ，需要充值的金额
+    url: credits/13 这里的13 来自aboutme api中的 credit.id
+    curl -X POST "http://127.0.0.1:3000/credits/13/orders.json?auth_token=BfVsBvt5Wm6kDzftihUp&price=120&content=recharge"
+    
+    {"created_at":"2013-07-29T06:03:02Z","credit_id":13,"credit_quantity":"120.0","id":31,"number":"K384480586","state":"credit_owed","total":null,"updated_at":"2013-07-29T06:03:02Z"}
+
+## 看图扣款 create order
+这时候的price是负数
+
+    curl -X POST "http://127.0.0.1:3000/credits/13/orders.json?auth_token=BfVsBvt5Wm6kDzftihUp&price=-1&content='payment:DailypostId:99'"
+
+创建dailypost扣款订单后，需要执行 pay_it改变照片payment_state状态
+
 ### updated: 2013-7-28
 pay_it 和 toggle_favor 返回的dailypost都是不完整json
 访问get a post, /api/dailypost/:id可以获得完整json。
@@ -75,21 +98,4 @@ pay_it 和 toggle_favor 返回的dailypost都是不完整json
 ## get my girls(必须登录)
     http://42.120.9.87:3020/api/dailyposts/my_girls.json
 
-###updated:2013-6-6
-#about me 获取当前登录用户帐号和余额信息 /api/losers/aboutme
-    http://42.120.9.87:3020/api/losers/aboutme.json
-
-#payment 充值 /api/orders/payment?price=num 
-    action:PUT
-    http://42.120.9.87:3020/api/order/payment?price=5.json
-
-#orders 订单记录 /api/orders
-
-###updated:2013-6-2
-#girls:
-## get girl list, /api/girls
-    http://42.120.9.87:3020/api/girls.json
-
-## get a girl, /api/girls/:id
-    http://42.120.9.87:3020/api/girls/2.json
 

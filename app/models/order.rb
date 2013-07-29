@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
     state :balance_due, :paid, :credit_owed
 
     event :pay do
-      transition :credit_owed => :credit_owed
+      transition :credit_owed => :paid
     end
   end
   
