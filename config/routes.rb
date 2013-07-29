@@ -47,7 +47,7 @@ Kongkong::Application.routes.draw do
 
       member do
         post "toggle_favor"
-        post "pay_it"
+        put "pay_it"
       end
     end
 
