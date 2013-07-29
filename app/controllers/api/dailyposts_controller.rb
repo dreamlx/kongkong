@@ -42,8 +42,14 @@ class Api::DailypostsController < ApplicationController
   def pay_it
     @dailypost = Dailypost.find(params[:id])
     visit_log = VisitHistory.where("user_id = #{current_user.id} and dailypost_id = #{@dailypost.id}").first
-
-    visit_log.update_attributes(state: "paid") if visit_log.state != 'paid'
+    if visit_log
+      visit_log.update_attributes(state: "paid") if visit_log.state != 'paid'
+    else
+      tracker = @dailypost.visit_histories.build(user_id: current_user.id, visit_count: 1)
+      tracker.state = 'paid'
+      tracker.save
+    end
+    
     render json: { dailypost:@dailypost, payment_state: @dailypost.payment_state }
 
     #todo 扣款
