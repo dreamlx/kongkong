@@ -1,5 +1,6 @@
 class Api::DailypostsController < ApplicationController
   before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
