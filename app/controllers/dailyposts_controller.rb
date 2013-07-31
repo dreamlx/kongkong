@@ -72,7 +72,7 @@ class DailypostsController < InheritedResources::Base
 
   private
   def payment
-    if params[:id] =~ /\d+/
+    if params[:id] =~ /\d+/ and user_signed_in?
       user = User.find(current_user.id)
       post = Dailypost.find(params[:id])
       balance = user.credit.balance
@@ -87,6 +87,8 @@ class DailypostsController < InheritedResources::Base
         #mycredit.create_credit_line_items.build(amount: post.cost.to_i)
         mycredit.save
       end
+    elsif !user_signed_in?
+      redirect_to new_user_session_path 
     else
       redirect_to root_path
     end
