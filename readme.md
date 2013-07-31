@@ -5,10 +5,13 @@ action method 没有特别说明，默认为'GET'
 采用restful形式组织
 返回结果为json，按照updated时间从现在到以前排序
 
-调试工具：我是firefox，用poster
+调试工具：我是firefox，用poster                                                       
 
 图片处理见
 http://docs.qiniu.com/api/image-process.html
+##updated: 2013-7-31
+## dailypost: 增加了一个node: totoal_favor
+每张照片的总喜欢数
 
 ### updated: 2013-7-29
 ## aboutme， 获取当前帐号的基本信息，包括帐号余额

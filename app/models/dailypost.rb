@@ -4,6 +4,7 @@ class Dailypost < ActiveRecord::Base
   validates_numericality_of :cost
   default_value_for :cost, 0
   scope :published_items, lambda { where("state = 'published'") }
+  scope :order_me, lambda { order("updated_at DESC") }
 
   mount_uploader :photo, AttachmentUploader
 
