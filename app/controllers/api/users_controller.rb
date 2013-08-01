@@ -1,10 +1,10 @@
 #coding: utf-8
 class Api::UsersController < ApplicationController
   before_filter :verify_authenticity_token,:except =>[:new, :create]
+  after_filter :first_login_add_credits
   respond_to :json
   def index
     @items = User.page(params[:page])
-
     render :status=>200, :json=>{:response => 'got user list',
       :result => @items, :last_page => @items.num_pages, 
       :current_page => params[:page].to_i
@@ -22,6 +22,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+
     @item = User.find(params[:id])
     render :status=>200,:json=>{:response => 'got user',:result=>@item}.to_json
   end
@@ -45,6 +46,15 @@ class Api::UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
     render :status=>200, :json => {:response => "successfully deleted user"}.to_json
-
   end
+
+  def first_login_add_credits
+    binding.pry
+    @user = User.find(params[:id])
+    last_sign_in_at = @user.last_sign_in_at
+    current_sign_in_at = @user.current_sign_in_at
+    if (current_sign_in_at.day - last_sign_in_at.day) > 0
+      redirect_to credit_orders_path(@user,"price"=>5,"content"=>recharge)
+    end
+  end  
 end

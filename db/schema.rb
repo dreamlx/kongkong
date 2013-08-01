@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729061208) do
+ActiveRecord::Schema.define(:version => 20130722052833) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -95,11 +95,11 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
 
   create_table "loser_likes", :force => true do |t|
     t.integer  "loser_id"
-    t.integer  "dailypost_id"
+    t.integer  "girl_id"
     t.string   "title"
     t.string   "state"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "materials", :force => true do |t|
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "attachment"
+    t.string   "attechment"
   end
 
   create_table "orders", :force => true do |t|
@@ -121,7 +122,7 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
     t.string   "state"
     t.datetime "created_at",                                    :null => false
     t.datetime "updated_at",                                    :null => false
-    t.string   "content"
+    t.integer  "user_id"
   end
 
   create_table "resources", :force => true do |t|
@@ -147,10 +148,9 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "device_token"
     t.string   "username"
+    t.string   "device_token"
     t.string   "token_authenticatable"
-    t.string   "authentication_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
