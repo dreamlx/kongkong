@@ -1,15 +1,16 @@
-class Api::DailypostsController < ApplicationController
+class Api::SharesController < ApplicationController
 	
 	before_filter :authenticate_user!
-  	skip_before_filter :verify_authenticity_token
-  	respond_to :json
+	skip_before_filter :verify_authenticity_token
+	respond_to :json
 
-  	def show 
+	def show 
 		@share = Share.find(params[:id])
+		@share_context = ShareContext.first
 	end
 
 	def index
-		@share = Share.find(params[:id])
+		@shares = Share.all
 	end
 
 	def new
@@ -18,11 +19,16 @@ class Api::DailypostsController < ApplicationController
 	end
 
 	def create 
-		@dailypost = Dailypost.find(params[:format])
+		@dailypost = Dailypost.find(params[:id])
 		@share = Share.new
-		@share.user_id = current_user.id
 		@share.dailypost_id = @dailypost.id
-		@share.photo_url = @dailypost.photo.url
-		@share.save
+		@share.user_id = current_user.id
+		@share.photo_url = @dailypost.photo.url+"?imageView/2/w/400/h/400"
+		@share_context = ShareContext.first
+		if @share.save
+			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:context=>@share_context.context}.to_json 
+		else
+			render :status=>403,:json => { :error => @share.errors}.to_json
+		end
 	end
 end
