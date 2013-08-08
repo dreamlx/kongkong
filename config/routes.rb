@@ -14,6 +14,7 @@ Kongkong::Application.routes.draw do
   end
 
   resources :shares
+  resources :see_shares
   
   root to: "home#index" 
   
@@ -39,6 +40,7 @@ Kongkong::Application.routes.draw do
 
   namespace :api do
     resources :shares
+    resources :see_shares
     resources :girls
     resources :dailyposts do
       collection do

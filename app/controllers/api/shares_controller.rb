@@ -7,6 +7,10 @@ class Api::SharesController < ApplicationController
 	def show 
 		@share = Share.find(params[:id])
 		@share_context = ShareContext.first
+		@see_share = SeeShare.new
+		@see_share.share_id = @share.id
+		@see_share.user_id = current_user.id
+		@see_share.save
 	end
 
 	def index
@@ -32,6 +36,7 @@ class Api::SharesController < ApplicationController
 		@share.photo_url = @dailypost.photo.url+"?imageView/2/w/400/h/400"
 		@share_context = ShareContext.first
 		if @share.save
+
 			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:context=>@share_context.context}.to_json 
 		else
 			render :status=>403,:json => { :error => @share.errors}.to_json
