@@ -24,7 +24,6 @@ ActiveAdmin.register Dailypost do
       f.input :photo
       f.input :content
     end
-
     f.actions
   end
 

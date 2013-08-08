@@ -31,6 +31,7 @@ class Api::TokensController  < ApplicationController
       render :status=>401, :json=>{:message=>"Invalid email or password."}
     else
       render :status=>200, :json=>{:token=>@user.authentication_token, :user => @user.to_json}
+      
     end
   end
  
