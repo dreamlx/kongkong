@@ -10,7 +10,7 @@ class Api::SharesController < ApplicationController
 	end
 
 	def index
-		@shares = Share.all
+		@shares = Share.where("user_id=#{current_user.id}")
 	end
 
 	def new
@@ -20,6 +20,12 @@ class Api::SharesController < ApplicationController
 
 	def create 
 		@dailypost = Dailypost.find(params[:id])
+		if @dailypost.share_time.nil?
+			@dailypost.share_time=1
+		else
+			@dailypost.share_time+=1
+		end
+		@dailypost.save
 		@share = Share.new
 		@share.dailypost_id = @dailypost.id
 		@share.user_id = current_user.id

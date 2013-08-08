@@ -37,6 +37,7 @@ ActiveAdmin.register Dailypost do
       link_to post.state_name, toggle_publish_admin_dailypost_path(post), method: "PUT"
     end
     column :content
+    column :share_time
     column :created_at
     actions
   end
