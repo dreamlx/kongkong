@@ -16,7 +16,7 @@ http://docs.qiniu.com/api/image-process.html
 id为dailypost的id
 
 ## dailypost增加share_time，可以查看照片被分享的次数
-## 增加查看用户分享的照列表
+## 增加查看用户分享的照片列表
     action:GET
     curl -X GET "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY"
 ## 增加see_share表，用来记录用户分享照片时，点开分享链接的用户，增加谁查看分享链接的json list
