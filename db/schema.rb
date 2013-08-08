@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722052833) do
+ActiveRecord::Schema.define(:version => 20130807154558) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -98,8 +98,9 @@ ActiveRecord::Schema.define(:version => 20130722052833) do
     t.integer  "girl_id"
     t.string   "title"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "dailypost_id"
   end
 
   create_table "materials", :force => true do |t|
@@ -135,6 +136,16 @@ ActiveRecord::Schema.define(:version => 20130722052833) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "shares", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "dailypost_id"
+    t.string   "photo_url"
+    t.string   "apk_url"
+    t.string   "context"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -146,11 +157,10 @@ ActiveRecord::Schema.define(:version => 20130722052833) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "username"
+    t.string   "authentication_token"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "username"
-    t.string   "device_token"
-    t.string   "token_authenticatable"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

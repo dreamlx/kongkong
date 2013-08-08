@@ -13,6 +13,8 @@ class Dailypost < ActiveRecord::Base
   has_many :loser_likes, class_name: "LoserLike", :dependent => :destroy
   has_many :losers, through: :loser_likes
 
+  has_many :shares
+
   state_machine :state, initial: :default do
     state :default, :published
 
