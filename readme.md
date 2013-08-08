@@ -16,7 +16,7 @@ http://docs.qiniu.com/api/image-process.html
 ## 增加分享接口
     action:post
     curl:curl -X POST "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=18"
-    id为dailypost的id
+id为dailypost的id
 
 ### updated: 2013-7-29
 ## aboutme， 获取当前帐号的基本信息，包括帐号余额
