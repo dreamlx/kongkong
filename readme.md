@@ -1,4 +1,3 @@
-
 所有api接口都用http方式访问，http头为.json
 action method 没有特别说明，默认为'GET'
 
@@ -12,6 +11,12 @@ http://docs.qiniu.com/api/image-process.html
 ##updated: 2013-7-31
 ## dailypost: 增加了一个node: totoal_favor
 每张照片的总喜欢数
+
+###updated: 2013-8-08
+## 增加分享接口
+    action:post
+    curl:curl -X POST "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=18"
+    id为dailypost的id
 
 ### updated: 2013-7-29
 ## aboutme， 获取当前帐号的基本信息，包括帐号余额
