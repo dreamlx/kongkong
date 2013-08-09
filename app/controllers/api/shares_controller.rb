@@ -15,7 +15,6 @@ class Api::SharesController < ApplicationController
 
 	def new
 		@share = Share.new
-		redirect_to shares_path
 	end
 
 	def create 
@@ -33,7 +32,7 @@ class Api::SharesController < ApplicationController
 		@share_context = ShareContext.first
 		if @share.save
 
-			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:context=>@share_context.context}.to_json 
+			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:dailypost_id=>@dailypost.id,:share_time=>@dailypost.share_time
 		else
 			render :status=>403,:json => { :error => @share.errors}.to_json
 		end
