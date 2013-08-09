@@ -1,4 +1,3 @@
-
 所有api接口都用http方式访问，http头为.json
 action method 没有特别说明，默认为'GET'
 
@@ -9,6 +8,22 @@ action method 没有特别说明，默认为'GET'
 
 图片处理见
 http://docs.qiniu.com/api/image-process.html
+
+## updated: 2013-8-08
+## 增加分享接口
+    action:post
+    curl:curl -X POST "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=18"
+id为dailypost的id
+
+## dailypost增加share_time，可以查看照片被分享的次数
+## 增加查看用户分享的照片列表
+    action:GET
+    curl -X GET "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY"
+## 增加see_share表，用来记录用户分享照片时，点开分享链接的用户，增加谁查看分享链接的json list
+    action:GET
+    curl -X GET "HTTP://127.0.0.1:3000/api/see_shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=22"
+id为dailypost_id
+
 ##updated: 2013-7-31
 ## dailypost: 增加了一个node: totoal_favor
 每张照片的总喜欢数
