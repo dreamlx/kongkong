@@ -3,7 +3,7 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   has_many :orders
   has_many :create_credit_line_items
-
+  validates_uniqueness_of :id
   def caculate_balance(order, desc = "")
     self.balance += order.credit_quantity
     self.save

@@ -1,0 +1,2 @@
+module SeeShareHelper
+end

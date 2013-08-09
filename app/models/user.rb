@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
 
   has_one :credit
   has_many :visit_histories
+  has_many :shares
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

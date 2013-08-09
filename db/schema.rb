@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729061208) do
+ActiveRecord::Schema.define(:version => 20130809055545) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
     t.datetime "updated_at", :null => false
     t.integer  "cost"
     t.string   "state"
+    t.integer  "share_time"
   end
 
   create_table "girls", :force => true do |t|
@@ -132,6 +133,22 @@ ActiveRecord::Schema.define(:version => 20130729061208) do
     t.decimal  "price"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "share_contexts", :force => true do |t|
+    t.string   "apk_url"
+    t.string   "context"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "shares", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "dailypost_id"
+    t.string   "photo_url"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "active_times"
   end
 
   create_table "users", :force => true do |t|
