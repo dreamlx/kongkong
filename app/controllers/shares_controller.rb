@@ -4,6 +4,12 @@ class SharesController < ApplicationController
 	def show 
 		@share = Share.find(params[:id])
 		@share_context = ShareContext.first
+		if @share.active_times.nil?
+			@share.active_times=1
+		else
+			@share.active_times+=1
+		end
+		@share.save
 		render :layout => false
 	end
 

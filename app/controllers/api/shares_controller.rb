@@ -7,10 +7,6 @@ class Api::SharesController < ApplicationController
 	def show 
 		@share = Share.find(params[:id])
 		@share_context = ShareContext.first
-		@see_share = SeeShare.new
-		@see_share.share_id = @share.id
-		@see_share.user_id = current_user.id
-		@see_share.save
 	end
 
 	def index
