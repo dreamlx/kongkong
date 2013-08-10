@@ -9,6 +9,10 @@ action method 没有特别说明，默认为'GET'
 图片处理见
 http://docs.qiniu.com/api/image-process.html
 
+##updated: 2013-8-10
+## 增加rake task upload_pic_to_qiniu ，用来上传图片到qiniu
+rake upload_pic_to_qiniu["path"]  path为文件夹的路径
+
 ## updated: 2013-8-08
 ## 增加分享接口
     action:post
