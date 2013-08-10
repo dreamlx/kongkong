@@ -31,8 +31,7 @@ class Api::SharesController < ApplicationController
 		@share.photo_url = @dailypost.photo.url+"?imageView/2/w/400/h/400"
 		@share_context = ShareContext.first
 		if @share.save
-
-			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:dailypost_id=>@dailypost.id,:share_time=>@dailypost.share_time
+			render :status=>200,:json => { :response => 'created share', :id=>@share.id,:dailypost_id=>@dailypost.id,:share_time=>@dailypost.share_time}
 		else
 			render :status=>403,:json => { :error => @share.errors}.to_json
 		end

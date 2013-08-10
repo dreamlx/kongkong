@@ -1,5 +1,6 @@
 class Api::TokensController  < ApplicationController
   skip_before_filter :verify_authenticity_token
+  after_filter :first_login_add_credits
   respond_to :json
   def create
     email = params[:email]
@@ -43,6 +44,30 @@ class Api::TokensController  < ApplicationController
     else
       @user.reset_authentication_token!
       render :status=>200, :json=>{:token=>params[:id]}
+    end
+  end
+
+  def first_login_add_credits
+     email = params[:email]
+     @user=User.find_by_email(email.downcase)
+     @credit = Credit.find_by_user_id(@user.id)
+     if @user.last_sign_in_at.nil?
+        @credit.balance += 5
+     elsif isAfter(@user.current_sign_in_at,@user.last_sign_in_at) 
+       @credit.balance += 5
+     end
+       @credit.save
+  end
+
+  def isAfter(this_time,last_time)
+    if this_time.year > last_time.year
+        return true
+    elsif this_time.month > last_time.month
+        return true
+    elsif this_time.day > last_time.day
+        return true
+    else 
+        return false
     end
   end
 end
