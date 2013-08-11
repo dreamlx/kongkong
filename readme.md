@@ -10,16 +10,15 @@ action method 没有特别说明，默认为'GET'
 http://docs.qiniu.com/api/image-process.html
 
 ## updated: 2013-8-08
-## 增加分享接口
+## 增加分享接口 share api
     action:post
-    curl:curl -X POST "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=18"
-id为dailypost的id
-分享的链接为
-    http://localhost:3000/shares/33  
-33为share_id
+    curl -X POST "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY" -d "id=18"
+    #id为dailypost的id
+    #分享的链接为 http://localhost:3000/shares/33  
+    #33为share_id
 
 ## dailypost增加share_time，可以查看照片被分享的次数
-## 增加查看用户分享的照片列表
+## 增加查看当前用户已分享的照片列表
     action:GET
     curl -X GET "HTTP://127.0.0.1:3000/api/shares.json?auth_token=nWqBypyDe9deup5gFDkY"
 
