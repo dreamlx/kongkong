@@ -51,12 +51,24 @@ class Api::TokensController  < ApplicationController
      email = params[:email]
      @user=User.find_by_email(email.downcase)
      @credit = Credit.find_by_user_id(@user.id)
-     last_sign_in_at = @user.last_sign_in_at
-     current_sign_in_at = @user.current_sign_in_at
-     if (current_sign_in_at.day - last_sign_in_at.day) > 0
+     if @user.last_sign_in_at.nil?
+        @credit.balance += 5
+     elsif isAfter(@user.current_sign_in_at,@user.last_sign_in_at) 
        @credit.balance += 5
-       @credit.save
      end
+       @credit.save
+  end
+
+  def isAfter(this_time,last_time)
+    if this_time.year > last_time.year
+        return true
+    elsif this_time.month > last_time.month
+        return true
+    elsif this_time.day > last_time.day
+        return true
+    else 
+        return false
+    end
   end
 end
 
