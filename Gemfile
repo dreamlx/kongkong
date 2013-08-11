@@ -2,7 +2,7 @@
 source 'http://ruby.taobao.org'
 gem 'rails', '3.2.12'
 gem 'rabl'
-
+gem "rails_best_practices"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
