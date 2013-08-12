@@ -34,7 +34,8 @@ class Api::SharesController < ApplicationController
 			render :status=>200,:json => { 
 				:response => 'created share', 
 				:id => @share.id,:dailypost_id => @dailypost.id,
-				:share_time => @dailypost.share_time }
+				:share_time => @dailypost.share_time,
+				:share_context => @share_context.context}
 		else
 			render :status=>403,:json => { :error => @share.errors}.to_json
 		end

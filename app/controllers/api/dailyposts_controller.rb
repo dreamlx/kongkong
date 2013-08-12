@@ -1,9 +1,26 @@
 class Api::DailypostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user! ,:except =>[:create]
   skip_before_filter :verify_authenticity_token
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
+  end
+
+  def create
+    file = params[:filename]
+    @dailypost = Dailypost.new
+    @dailypost.girl_id = 1
+    @dailypost.cost = 1
+    @dailypost.photo = file
+    respond_to do |format|
+      if @dailypost.save
+        render :status=>200,:json => { 
+        :response => 'create dailypost success'}
+      else
+        render :status=>200,:json => { 
+        :response => 'save dailypost failed'}
+      end
+    end
   end
   
   def show
