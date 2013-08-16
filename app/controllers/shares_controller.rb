@@ -1,5 +1,20 @@
 class SharesController < ApplicationController
+
+	before_filter :effective_link, only: [:show]
 	
+	def effective_link
+		time_now = Time.now
+		@share = Share.find(params[:id])
+		create_time = @share.created_at
+		binding.pry
+		puts "create_time is #{create_time}"
+		puts "time now is #{time_now}"
+		puts is_after(time_now,create_time)
+		puts time_now.hour > create_time.hour
+		if  is_after(time_now,create_time) 
+			redirect_to root_path
+		end
+	end
 
 	def show 
 		@share = Share.find(params[:id])

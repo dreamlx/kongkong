@@ -18,4 +18,15 @@ class ApplicationController < ActionController::Base
    I18n.locale = session[:locale]||I18n.default_locale
   end
 
+ def is_after(this_time,last_time)
+    if this_time.year > last_time.year
+        return true
+    elsif this_time.month > last_time.month
+        return true
+    elsif this_time.day > last_time.day
+        return true
+    else 
+        return false
+    end
+  end
 end
