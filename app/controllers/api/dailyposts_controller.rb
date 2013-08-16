@@ -7,19 +7,12 @@ class Api::DailypostsController < ApplicationController
   end
 
   def create
-    file = params[:filename]
-    @dailypost = Dailypost.new
-    @dailypost.girl_id = 1
-    @dailypost.cost = 1
-    @dailypost.photo = file
-    respond_to do |format|
-      if @dailypost.save
-        render :status=>200,:json => { 
-        :response => 'create dailypost success'}
-      else
-        render :status=>200,:json => { 
-        :response => 'save dailypost failed'}
-      end
+    @dailypost = Dailypost.new(params[:dailypost])
+    if @dailypost.save
+      render :json => {:response => 'success'}.to_json
+      # render :status=>200,:json => { :response => 'created user', :user=>@user}.to_json 
+    else
+      render :json => {:response => 'failed'}.to_json
     end
   end
   
