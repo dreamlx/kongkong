@@ -2,14 +2,14 @@ class Api::DailypostsController < ApplicationController
   before_filter :authenticate_user! ,:except =>[:create]
   skip_before_filter :verify_authenticity_token
   respond_to :json
-  caches_action :index
+  caches_action :index, :show
 
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
   end
 
   def create
-    expire_action :action => :index
+    expire_action :action => [:index, :show]
     @dailypost = Dailypost.new(params[:dailypost])
     if @dailypost.save
       render :json => {:response => 'success'}.to_json

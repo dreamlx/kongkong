@@ -29,7 +29,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: kongkong_production
+  database: kongkong_dev
   pool: 5
   host: localhost
   port: 5432
