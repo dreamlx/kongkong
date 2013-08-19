@@ -36,5 +36,5 @@ Kongkong::Application.configure do
   config.assets.debug = true
   config.time_zone = 'Beijing'
   config.active_record.default_timezone = :local
-
+  config.cache_store = :memory_store
 end
