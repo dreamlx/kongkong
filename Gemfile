@@ -44,6 +44,8 @@ end
 gem 'jquery-rails'
 
 group :development, :test do
+  gem "pry-nav"
+  gem 'pry'
   gem 'pg'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
