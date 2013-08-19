@@ -5,7 +5,7 @@ gem 'rabl'
 gem "rails_best_practices"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
+gem 'dalli'
 gem 'qiniu-rs'
 gem 'carrierwave'
 gem 'carrierwave-qiniu'
