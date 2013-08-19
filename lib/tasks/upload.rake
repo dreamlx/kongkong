@@ -4,6 +4,7 @@ desc "upload_pic_to_qiniu"
 task :upload_pic_to_qiniu, [:dir_path,:server_path] => :environment do |t, args|
 	if FileTest::exist?(args.dir_path)
 		upload_file(args.dir_path,args.server_path)
+		puts "dir is exist"
 	else
 		puts "dir is not exist,please resumeload"
 	end
@@ -51,7 +52,7 @@ end
 
 def save_photo(photo_url,start,finished,server_path,has_upload_pic)
 	for k in start..finished
-		puts "photo_url is #{photo_url[k]}"
+		puts "photo_url is #{photo_url[k]}, server_path is #{server_path}"
 		`curl -F "action=upload" -F "filename=@#{photo_url[k]}" '#{server_path}'`
 		move_pic(photo_url[k],has_upload_pic)
 	end

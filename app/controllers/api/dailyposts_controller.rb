@@ -1,12 +1,14 @@
 class Api::DailypostsController < ApplicationController
   before_filter :authenticate_user! ,:except =>[:create]
   skip_before_filter :verify_authenticity_token
+  caches_action :index
   respond_to :json
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
   end
 
   def create
+    expire_action :action => :index
     file = params[:filename]
     @dailypost = Dailypost.new
     @dailypost.girl_id = 1

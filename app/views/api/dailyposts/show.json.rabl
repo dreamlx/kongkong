@@ -1,4 +1,7 @@
 object @dailypost
+
+cache @dailypost, :expires_in => 12.hour
+
 attributes 	:id, 
 			:updated_at, 
 			:girl_id, 
