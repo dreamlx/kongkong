@@ -47,12 +47,14 @@ class Api::DailypostsController < ApplicationController
   end
 
   def toggle_favor
+    expire_action :action => [:index, :show]
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
     render json: { dailypost:@dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 
   def pay_it
+    expire_action :action => [:index, :show]
     @dailypost = Dailypost.find(params[:id])
     visit_log = VisitHistory.where("user_id = #{current_user.id} and dailypost_id = #{@dailypost.id}").first
     if visit_log
