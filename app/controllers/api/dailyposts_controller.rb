@@ -2,7 +2,6 @@ class Api::DailypostsController < ApplicationController
   before_filter :authenticate_user! ,:except =>[:create]
   skip_before_filter :verify_authenticity_token
   respond_to :json
-  caches_action :index, :show
 
   def index
     @dailyposts = Dailypost.order(" updated_at DESC")
@@ -47,14 +46,12 @@ class Api::DailypostsController < ApplicationController
   end
 
   def toggle_favor
-    expire_action :action => [:index, :show]
     @dailypost = Dailypost.find(params[:id])
     Loser.find(current_user).favor_toggle(@dailypost)
     render json: { dailypost:@dailypost, favor_state: Loser.find(current_user).favor_state(@dailypost) }
   end
 
   def pay_it
-    expire_action :action => [:index, :show]
     @dailypost = Dailypost.find(params[:id])
     visit_log = VisitHistory.where("user_id = #{current_user.id} and dailypost_id = #{@dailypost.id}").first
     if visit_log
