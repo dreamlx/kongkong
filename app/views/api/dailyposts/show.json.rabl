@@ -1,4 +1,5 @@
 object @dailypost
+
 attributes 	:id, 
 			:updated_at, 
 			:girl_id, 
