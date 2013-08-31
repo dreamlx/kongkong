@@ -6,7 +6,6 @@ class SharesController < ApplicationController
 		time_now = Time.now
 		@share = Share.find(params[:id])
 		create_time = @share.created_at
-		binding.pry
 		puts "create_time is #{create_time}"
 		puts "time now is #{time_now}"
 		puts is_after(time_now,create_time)
