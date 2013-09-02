@@ -11,7 +11,7 @@ development:
   host: localhost
   port: 5432
   username: postgres
-  password: 791126
+  password: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,7 +24,7 @@ test:
   host: localhost
   port: 5432
   username: postgres
-  password: 791126
+  password: postgres
 
 production:
   adapter: postgresql
@@ -34,4 +34,4 @@ production:
   host: localhost
   port: 5432
   username: postgres
-  password: 791126
+  password: postgres
