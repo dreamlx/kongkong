@@ -4,7 +4,7 @@ class Girl < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :dailyposts
+  has_many :dailyposts, :dependent => :destroy
   
   accepts_nested_attributes_for :dailyposts, :allow_destroy => true
 

@@ -18,8 +18,9 @@ class DailypostsController < InheritedResources::Base
     respond_to do |format|
       if @dailypost.save
         format.html { redirect_to dailyposts_path, notice: 'Post was successfully created.' }
-        format.json { head :no_content }
+        format.json { head :no_content, @dailypost }
       else
+        format.json { head :no_content, @dailypost.errors }
         format.html { render action: "new" }
       end
     end

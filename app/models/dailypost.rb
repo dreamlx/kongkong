@@ -9,12 +9,12 @@ class Dailypost < ActiveRecord::Base
   mount_uploader :photo, AttachmentUploader
 
   belongs_to :girl
-  has_many :visit_histories
+  has_many :visit_histories, :dependent => :destroy
 
   has_many :loser_likes, class_name: "LoserLike", :dependent => :destroy
   has_many :losers, through: :loser_likes
 
-  has_many :shares
+  has_many :shares, :dependent => :destroy
 
   state_machine :state, initial: :default do
     state :default, :published

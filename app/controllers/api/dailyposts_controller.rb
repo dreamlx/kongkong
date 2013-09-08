@@ -8,7 +8,6 @@ class Api::DailypostsController < ApplicationController
   end
 
   def create
-    expire_action :action => [:index, :show]
     @dailypost = Dailypost.new(params[:dailypost])
     if @dailypost.save
       render :json => {:response => 'success'}.to_json
